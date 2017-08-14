@@ -30,13 +30,13 @@ function Header(props) {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Drawer className={classes.drawer} />
+         {/* <Drawer className={classes.drawer} />  */}
         <Typography type="title" color="inherit" className={classes.flex}>
           Issue Tracker
           </Typography>
 
-        <Button color="contrast" onClick={() => props.history.push('/reports')}>Reports</Button>
         <Button color="contrast" onClick={() => props.history.push('/issues')}>Issues</Button>
+        <Button color="contrast" onClick={() => props.history.push('/reports')}>Reports</Button>
         <AdminMenu />
       </Toolbar>
     </AppBar>

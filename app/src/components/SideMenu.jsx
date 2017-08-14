@@ -15,7 +15,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 
 import Blue from 'material-ui/colors/blue';
 
-const styleSheet = createStyleSheet({
+const styleSheet = createStyleSheet(theme => ({
   list: {
     width: 250,
     flex: 'initial',
@@ -24,10 +24,17 @@ const styleSheet = createStyleSheet({
     width: 'auto',
     flex: 'initial',
   },
+  drawerHeader: {
+    backgroundColor: theme.palette.primary[500],
+    height: 64
+  },
+  profile: {
+    padding: theme.spacing.unit * 2,
+  },
   sideMenu: {
     background: Blue.A400
   }
-});
+}));
 
 class SideMenu extends Component {
 
@@ -36,7 +43,7 @@ class SideMenu extends Component {
 
     this.state = {
       open: true,
-      docked:true
+      docked: true
     };
 
     this.handleOpen = this.handleOpen.bind(this);
@@ -101,6 +108,11 @@ class SideMenu extends Component {
         onClick={this.handleClose}
         style={{ zIndex: 10 }}
       >
+        <div className={classes.drawerHeader}>
+          <div className={classes.profile}>
+            {"Admin Panel"}
+          </div>
+        </div>
         {sideList}
       </Drawer>
     );

@@ -9,7 +9,7 @@ Perform side effects like API calls and routing transitions;
 Call non-pure functions, e.g. Date.now() or Math.random().
 */
 
-const issues = (state = initialState, action) => {
+const employees = (state = initialState, action) => {
   switch (action.type) {
     case types.SEND_REQUEST:
       // console.log('SEND_REQUEST', action);
@@ -35,7 +35,7 @@ const issues = (state = initialState, action) => {
     case types.LOAD_ISSUES_SUCCESS:
       // console.log('LOAD_ISSUES_SUCCESS');
       return Object.assign({}, state, {
-        issues: action.data.issues,
+        employees: action.data.employees,
         totalCount: action.data.totalCount,
         isFetching: false,
         pageNum: action.data.pageNum,
@@ -47,15 +47,15 @@ const issues = (state = initialState, action) => {
       // console.log('CREATE_ISSUE_SUCCESS');
       const updatedIssue = action.issue;
       return Object.assign({}, state, {
-        issues: state.issues.concat(updatedIssue),
+        employees: state.employees.concat(updatedIssue),
         receivedAt: action.receivedAt
       });
 
     case types.DELETE_ISSUE_SUCCESS:
       // console.log('DELETE_ISSUE_SUCCESS');
-      const newIssues = state.issues.filter(issue => action.issueIds.indexOf(issue._id) == -1);
+      const newIssues = state.employees.filter(issue => action.issueIds.indexOf(issue._id) == -1);
       return Object.assign({}, state, {
-        issues: newIssues,
+        employees: newIssues,
         deletedIssues: state.deletedIssues.concat(action.issueIds),
         isFetching: false,
         receivedAt: action.receivedAt
@@ -65,4 +65,4 @@ const issues = (state = initialState, action) => {
   }
 }
 
-export default issues
+export default employees

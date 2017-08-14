@@ -1,10 +1,10 @@
 export default {
-  issues: [],
+  employees: [],
   updatedIssue:{},
   totalCount: 0,
   isFetching: false,
   failed: false,
-  deletedIssues: [],
+  deletedEmployees: [],
   pageSize : 10,
   pageNum : 1,
   offset: 0

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import issuesState from './issues';
+import employee from './employee';
 import notification from './notifications';
 
 const issueTrackerApp = combineReducers({
-  issuesState,
+  employee,
   notification,
   form: formReducer
 });

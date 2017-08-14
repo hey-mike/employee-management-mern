@@ -11,9 +11,6 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 
 
 const styleSheet = createStyleSheet(theme => ({
-    container: {
-
-    },
     right: {
         width: 'calc(100% - 250px)',
         float: 'right'
@@ -33,22 +30,13 @@ class App extends React.Component {
         const classes = this.props.classes;
 
         return (
-            // <div className={classes.container}>
-            //     <div className={classes.right} >
-            //         <Header />
-            //         <div className={classes.content}>
-            //             <Routes />
-            //             <NotificationContainer />
-            //         </div>
-            //     </div>
-
-            //     <SideMenu className={classes.sidebar} />
-            // </div >
-
             <div>
-                <Header />
-                <div className={classes.content}>
-                    <Routes />
+                <SideMenu />
+                <div className={classes.right}>
+                    <Header />
+                    <div className={classes.content}>
+                        <Routes />
+                    </div>
                 </div>
                 <NotificationContainer />
             </div >

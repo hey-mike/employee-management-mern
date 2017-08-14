@@ -40,8 +40,8 @@ class UndockedDrawer extends Component {
     super(props);
 
     this.state = {
-      open: false,
-      docked: false
+      open: true,
+      docked: true
     };
 
     this.handleOpen = this.handleOpen.bind(this);
@@ -113,9 +113,8 @@ class UndockedDrawer extends Component {
         >
           <div className={classes.drawerHeader}>
             <div className={classes.profile}>
-              {"Side Panel"}
+              {"Admin Panel"}
             </div>
-
           </div>
           {sideList}
         </Drawer>
