@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  myapp:
+    container_name: node-app
+    image: michael/node-app
+    build: .
+    environment:
+      - NODE_ENV=development
+      - FOO=bar
+    command: npm run dev-all-hook
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+      - "5858:5858"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+      
+  mongodb:
+    image: mongo
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - 27018:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
