@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import Header from '../components/Header.jsx';
 import Routes from './Routes.jsx';
-import NotificationContainer from './NotificationContainer.jsx';
+import Notification from './Notification.jsx';
 import SideMenu from '../components/SideMenu.jsx';
 import Grid from 'material-ui/Grid'
 import { withStyles, createStyleSheet } from 'material-ui/styles';
@@ -38,7 +38,7 @@ class App extends React.Component {
                         <Routes />
                     </div>
                 </div>
-                <NotificationContainer />
+                <Notification />
             </div >
         );
     }

@@ -160,7 +160,7 @@ class EmployeeEdit extends React.Component {
 	}
 	hideModal() {
 		this.setState({ open: false });
-		this.props.history.push('/issues')
+		this.props.history.push('/employees')
 	};
 	submitForm() {
 		this.props.dispatch(submit('EditIssueForm'));

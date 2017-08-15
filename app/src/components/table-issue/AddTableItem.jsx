@@ -92,7 +92,6 @@ class IssueAddTableItem extends React.Component {
   }
 }
 IssueAddTableItem.propTypes = {
-  updatedIssue: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
@@ -100,10 +99,10 @@ IssueAddTableItem.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const issuesState = state.issuesState;
+  const {updatedEmployee ,error } = state.employeesState;
   return {
-    updatedIssue: issuesState.updatedIssue,
-    error: issuesState.error,
+    updatedEmployee: updatedEmployee,
+    error: error,
   }
 };
 

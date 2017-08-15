@@ -149,6 +149,3 @@ export const deleteBulkEmployee = (employeeIds) => {
     });
   }
 }
-
-// export const deleteBulkEmployee = (employeeIds, history) => {
-// }

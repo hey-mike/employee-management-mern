@@ -2,41 +2,27 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { fetchIssuesIfNeeded, fetchIssues, deleteIssue } from '../actions/issueActions'
 
 
 import { Link } from 'react-router-dom';
 import qs from 'query-string';
 import { Button, Glyphicon, Table, Panel, Pagination } from 'react-bootstrap';
 
-
-import IssueAddNavItem from './IssueAddNavItem.jsx';
-import IssueDataTable from './IssueDataTable.jsx'
+import EmployeeTable from './EmployeeTable.jsx'
 
 
 const PAGE_SIZE = 10;
-class IssueList extends React.Component {
+class EmployeePage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            issues: [],
+            employees: [],
             totalCount: 0,
         };
-        // this.createIssue = this.createIssue.bind(this);
         this.setFilter = this.setFilter.bind(this);
-        // this.deleteIssue = this.deleteIssue.bind(this);
-        // this.selectPage = this.selectPage.bind(this);
     }
-    // componentDidMount() {
-    //     this.props.dispatch(fetchIssues(this.props.location, PAGE_SIZE));
-    // }
 
-    // componentDidUpdate(prevProps) {
-    //     if(prevProps.location.search == this.props.location.search) return;
-
-    //     this.props.dispatch(fetchIssuesIfNeeded(this.props.location, PAGE_SIZE));
-    // }
 
     setFilter(query) {
         let query_string = qs.stringify(query);
@@ -56,14 +42,14 @@ class IssueList extends React.Component {
         let initFilter = qs.parse(this.props.location.search);
         return (
             <div>
-                <IssueDataTable issues={this.props.issues} isFetching={this.props.isFetching}/>
+                <EmployeeTable employees={this.props.employees} isFetching={this.props.isFetching}/>
             </div>
         );
     }
 }
-IssueList.propTypes = {
+EmployeePage.propTypes = {
     location: PropTypes.object.isRequired,
-    issues: PropTypes.array.isRequired,
+    employees: PropTypes.array.isRequired,
     totalCount: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
     lastUpdated: PropTypes.number,
@@ -72,15 +58,15 @@ IssueList.propTypes = {
 
 
 const mapStateToProps = (state, ownProps) => {
-    const issuesState = state.issuesState;
+    const employeesState = state.employeesState;
     return {
-        issues: issuesState.issues,
-        totalCount: issuesState.totalCount,
-        isFetching: issuesState.isFetching,
-        lastUpdated: issuesState.lastUpdated,
-        updatedIssue: issuesState.updatedIssue,
+        employees: employeesState.employees,
+        totalCount: employeesState.totalCount,
+        isFetching: employeesState.isFetching,
+        lastUpdated: employeesState.lastUpdated,
+        updatedEmployee: employeesState.updatedIssue,
     }
 };
 
-export default connect(mapStateToProps)(IssueList);
+export default connect(mapStateToProps)(EmployeePage);
 

@@ -32,8 +32,8 @@ const employees = (state = initialState, action) => {
         isFetching: false
       });
 
-    case types.LOAD_ISSUES_SUCCESS:
-      // console.log('LOAD_ISSUES_SUCCESS');
+    case types.LOAD_EMPLOYEES_SUCCESS:
+      // console.log('LOAD_EMPLOYEES_SUCCESS');
       return Object.assign({}, state, {
         employees: action.data.employees,
         totalCount: action.data.totalCount,
@@ -43,16 +43,16 @@ const employees = (state = initialState, action) => {
         receivedAt: action.receivedAt
       });
 
-    case types.CREATE_ISSUE_SUCCESS:
-      // console.log('CREATE_ISSUE_SUCCESS');
+    case types.CREATE_EMPLOYEE_SUCCESS:
+      // console.log('CREATE_EMPLOYEE_SUCCESS');
       const updatedIssue = action.issue;
       return Object.assign({}, state, {
         employees: state.employees.concat(updatedIssue),
         receivedAt: action.receivedAt
       });
 
-    case types.DELETE_ISSUE_SUCCESS:
-      // console.log('DELETE_ISSUE_SUCCESS');
+    case types.DELETE_EMPLOYEE_SUCCESS:
+      // console.log('DELETE_EMPLOYEE_SUCCESS');
       const newIssues = state.employees.filter(issue => action.issueIds.indexOf(issue._id) == -1);
       return Object.assign({}, state, {
         employees: newIssues,
