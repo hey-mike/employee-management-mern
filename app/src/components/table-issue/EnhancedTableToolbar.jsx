@@ -16,7 +16,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { withRouter } from 'react-router-dom';
 
 
-import IssueAddTableItem from './AddTableItem.jsx';
+import EmployeeAddTableItem from './EmployeeAddTableItem.jsx';
 import FilterContextMenu from './FilterContextMenu.jsx';
 
 
@@ -117,7 +117,7 @@ class EnhancedTableToolbar extends Component {
           </IconButton>
         </div>
         <div className={classes.actions}>
-          <IssueAddTableItem />
+          <EmployeeAddTableItem />
         </div>
 
       </Toolbar>

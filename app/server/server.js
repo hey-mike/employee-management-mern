@@ -8,7 +8,6 @@ import mongoose from "mongoose";
 import 'babel-polyfill';
 import SourceMapSupport from 'source-map-support';
 
-import IssueHelper from './issueHelper.js';
 import issue from './routes/issue';
 import employee from './routes/employee';
 

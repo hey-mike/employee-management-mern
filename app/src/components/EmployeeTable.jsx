@@ -29,7 +29,7 @@ import EnhancedTableToolbar from './table-issue/EnhancedTableToolbar.jsx';
 import EnhancedTableFooter from './table-issue/EnhancedTableFooter.jsx';
 
 
-const IssueRow = (props) => {
+const EmployeeRow = (props) => {
   function onDeleteClick() {
     props.deleteIssue(props.issue);
   }
@@ -57,7 +57,7 @@ const IssueRow = (props) => {
     </TableRow>
   )
 }
-IssueRow.propTypes = {
+EmployeeRow.propTypes = {
   issue: PropTypes.object.isRequired,
 };
 
@@ -187,7 +187,7 @@ class EmployeeTable extends Component {
   render() {
     const { classes, isFetching, totalCount } = this.props;
     const { order, orderBy, selected } = this.state;
-    const issueRows = this.props.employees.map(issue => <IssueRow key={issue._id} issue={issue} isSelected={this.isSelected(issue._id)}
+    const employeeRows = this.props.employees.map(issue => <EmployeeRow key={issue._id} issue={issue} isSelected={this.isSelected(issue._id)}
       handleClick={this.handleClick} handleKeyDown={this.handleKeyDown} />)
 
 
@@ -204,7 +204,7 @@ class EmployeeTable extends Component {
             onRequestSort={this.handleRequestSort}
             checked={selected.length == this.state.pageSize}
           />
-          <TableBody>{issueRows}</TableBody>
+          <TableBody>{employeeRows}</TableBody>
         </Table>
         <EnhancedTableFooter
           issueSize={this.props.employees.length}

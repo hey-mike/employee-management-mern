@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { createIssue } from '../../actions/issueActions'
+import { createEmployee } from '../../actions/employeeActions'
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
@@ -20,7 +20,7 @@ import FormControl from 'material-ui/Form/FormControl';
 
 
 
-import AddIssueForm from '../forms/AddIssueForm.jsx';
+import AddEmployeeForm from '../forms/AddEmployeeForm.jsx';
 
 const styleSheet = createStyleSheet(theme => ({
   button: {
@@ -39,7 +39,7 @@ const styleSheet = createStyleSheet(theme => ({
 }));
 
 
-class IssueAddTableItem extends React.Component {
+class EmployeeAddTableItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -62,14 +62,14 @@ class IssueAddTableItem extends React.Component {
     // e.preventDefault();
     this.hideModal();
 
-    const newIssue = {
+    const newEmployee = {
+      name: values.name,
       title: values.title,
-      owner: values.owner,
       status: 'New',
       created: new Date(),
     };
 
-    this.props.dispatch(createIssue(newIssue, this.props.history));
+    this.props.dispatch(createEmployee(newEmployee, this.props.history));
   }
 
   render() {
@@ -81,17 +81,17 @@ class IssueAddTableItem extends React.Component {
         </IconButton>
         <Dialog open={this.state.open} classes={{ paper: classes.dialog }} onRequestClose={this.handleRequestClose}>
           <DialogTitle>
-            {"Create Issue"}
+            {"Create Employee"}
           </DialogTitle>
           <DialogContent>
-            <AddIssueForm handleCancel={this.hideModal} onSubmit={this.submit} />
+            <AddEmployeeForm handleCancel={this.hideModal} onSubmit={this.submit} />
           </DialogContent>
         </Dialog>
       </div>
     )
   }
 }
-IssueAddTableItem.propTypes = {
+EmployeeAddTableItem.propTypes = {
   match: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
@@ -99,12 +99,12 @@ IssueAddTableItem.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const {updatedEmployee ,error } = state.employeesState;
+  const { updatedEmployee, error } = state.employeesState;
   return {
     updatedEmployee: updatedEmployee,
     error: error,
   }
 };
 
-const componentWithStyles = withStyles(styleSheet)(IssueAddTableItem);
+const componentWithStyles = withStyles(styleSheet)(EmployeeAddTableItem);
 export default withRouter(connect(mapStateToProps)(componentWithStyles));

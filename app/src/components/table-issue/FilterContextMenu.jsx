@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
 
-import IssueAddTableItem from './AddTableItem.jsx';
+import EmployeeAddTableItem from './EmployeeAddTableItem.jsx';
 import FilterStatusDropdown from './FilterStatusDropdown.jsx';
 
 const toolbarStyleSheet = createStyleSheet(theme => ({
@@ -101,7 +101,7 @@ class FilterContextMenu extends Component {
                     <ClearAllIcon />
                 </IconButton>
 
-                <IssueAddTableItem />
+                <EmployeeAddTableItem />
 
             </Toolbar>
         )

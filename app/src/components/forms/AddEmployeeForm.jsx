@@ -41,17 +41,17 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
 }
 
 
-let AddIssueForm = props => {
+let AddEmployeeForm = props => {
     const { handleSubmit } = props;
     const classes = props.classes;
 
     return (
         <form onSubmit={handleSubmit}>
             <FormGroup className={classes.FormGroup} row={true}>
-                <Field name="title" label="Title" component={renderTextField} className={classes.textField} fullWidth={true} type="text" />
+                <Field name="name" label="Name" component={renderTextField} className={classes.textField} fullWidth={true} type="text" />
             </FormGroup>
             <FormGroup className={classes.FormGroup} row={true}>
-                <Field name="owner" label="Owner" component={renderTextField} className={classes.textField} fullWidth={true} type="text" />
+                <Field name="title" label="Title" component={renderTextField} className={classes.textField} fullWidth={true} type="text" />
             </FormGroup>
             <FormGroup className={classes.BtnFormGroup} row={true}>
                 <Button onClick={props.handleCancel} color="primary">Cancel</Button>
@@ -61,10 +61,10 @@ let AddIssueForm = props => {
         </form>
     )
 }
-const componentWithStyles = withStyles(styleSheet)(AddIssueForm);
-AddIssueForm = reduxForm({
+const componentWithStyles = withStyles(styleSheet)(AddEmployeeForm);
+AddEmployeeForm = reduxForm({
     // a unique name for the form
-    form: 'AddIssueForm'
+    form: 'AddEmployeeForm'
 })(componentWithStyles)
 
-export default AddIssueForm;
+export default AddEmployeeForm;

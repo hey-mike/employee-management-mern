@@ -87,11 +87,11 @@ class SideMenu extends Component {
 
     const sideList = (
       <div className={classes.sideMenu}>
-        <List className={classes.list} disablePadding>
+        <List className={classes.list}>
           {mailFolderListItems}
         </List>
         <Divider />
-        <List className={classes.list} disablePadding>
+        <List className={classes.list}>
           {otherMailFolderListItems}
         </List>
       </div>
@@ -103,9 +103,29 @@ class SideMenu extends Component {
         open
         onClick={this.handleClose}
         style={{ zIndex: 10 }}
-        classes={{paper: classes.sideMenu}}
+        classes={{ paper: classes.sideMenu }}
       >
-        {sideList}
+        <List className={classes.list}>
+          <ListItem button>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <ListItemText primary="Employees" />
+          </ListItem>
+
+          <ListItem button>
+            <ListItemIcon>
+              <ReportIcon />
+            </ListItemIcon>
+            <ListItemText primary="Deparment" />
+          </ListItem>
+        </List>
       </Drawer>
     );
   }

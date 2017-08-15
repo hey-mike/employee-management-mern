@@ -36,7 +36,7 @@ const styleSheet = createStyleSheet(theme => ({
 
 class EmployeeEdit extends React.Component {
 	static dataFetcher({ params, urlBase }) {
-		return fetch(`${urlBase || ''}/api/issues/${params.id}`).then(response => {
+		return fetch(`${urlBase || ''}/api/employees/${params.id}`).then(response => {
 			if (!response.ok) return response.json().then(error => Promise.reject(error));
 			return response.json().then(data => ({ EmployeeEdit: data }));
 		});
@@ -55,7 +55,7 @@ class EmployeeEdit extends React.Component {
 			open: true,
 			isFetching: false
 		};
-		console.log('props', props);
+
 		this.onChange = this.onChange.bind(this);
 		this.onValidityChange = this.onValidityChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
@@ -105,19 +105,19 @@ class EmployeeEdit extends React.Component {
 			issue.completionDate = completionDate;
 		}
 
-		fetch(`/api/issues/${this.props.match.params.id}`, {
+		fetch(`/api/employees/${this.props.match.params.id}`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(issue),
 		}).then(response => {
 			if (response.ok) {
-				response.json().then(updatedIssue => {
+				response.json().then(updatedEmployee => {
 					// convert to MongoDB Date object type
-					updatedIssue.created = new Date(updatedIssue.created);
-					if (updatedIssue.completionDate) {
-						updatedIssue.completionDate = this.formatDate(updatedIssue.completionDate);
+					updatedEmployee.created = new Date(updatedEmployee.created);
+					if (updatedEmployee.completionDate) {
+						updatedEmployee.completionDate = this.formatDate(updatedEmployee.completionDate);
 					}
-					this.setState({ issue: updatedIssue });
+					this.setState({ issue: updatedEmployee });
 					// this.props.showSuccess('Updated issue successfully.');
 					this.props.dispatch(addNotification('Updated issue successfully', 'success'));
 				});
@@ -128,7 +128,7 @@ class EmployeeEdit extends React.Component {
 				});
 			}
 		}).catch(err => {
-			this.props.showError(`Error in sending data to server: ${err.message}`);
+			this.props.dispatch(addNotification(`Failed to update issue: ${err.message}`, 'success'));
 		});
 	}
 	formatDate(date) {
@@ -151,11 +151,10 @@ class EmployeeEdit extends React.Component {
 				issue.completionDate = issue.completionDate != null ? this.formatDate(issue.completionDate) : null;
 				console.log('issue.completionDate', issue.completionDate);
 
-
 				this.setState({ issue });
 				this.setState({ isFetching: false });
 			}).catch(err => {
-				this.props.showError(`Error in fetching data from server: ${err.message}`);
+				this.props.dispatch(addNotification(`Error in fetching data from server: ${err.message}`, 'success'));
 			});
 	}
 	hideModal() {

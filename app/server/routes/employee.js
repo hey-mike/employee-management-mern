@@ -4,6 +4,9 @@ var router = express.Router();
 var Employee = require("../models/employee");
 var Issue = require("../models/issue");
 
+
+import IssueHelper from '../issueHelper.js';
+
 // TODO: should implement range pagination instead of using skip to result in better server performance
 router.get('/', (req, res) => {
   
@@ -22,7 +25,7 @@ router.get('/', (req, res) => {
         console.log('limit', limit);
 
         if (limit > 50) limit = 50;
-        const cursor = Employee.find(filter).sort({ created: -1 }).skip(offset).limit(limit);
+        const cursor = Employee.find(filter).sort({ createdAt: -1 }).skip(offset).limit(limit);
 
         // ensures that the effects of skip() and limit() will be ignored
         cursor.exec().then(emploees => {
@@ -58,50 +61,38 @@ router.get('/', (req, res) => {
             });
     }
 });
-// router.post('/issues', (req, res) => {
-//     const newIssue = req.body;
-//     newIssue.created = new Date();
-//     if (!newIssue.status) {
-//         newIssue.status = 'New';
-//     }
+router.post('/', (req, res) => {
+    const newEmployee = req.body;
+    newEmployee.created = new Date();
+    if (!newEmployee.status) {
+        newEmployee.status = 'New';
+    }
 
-//     const err = IssueHelper.validateIssue(newIssue);
-//     if (err) {
-//         res.status(422).json({ message: `Invalid request: ${err}` });
-//         return;
-//     }
+    var newUser = new Employee(newEmployee);
+    newUser.save().then(savedIssue => {
+        res.json(savedIssue);
+    }).catch(error => {
+        console.log(error);
+        res.status(500).json({ message: `Internal Server Error: ${error}` });
+    });
+});
+router.get('/:id', (req, res) => {
+    let documentId;
+    try {
+        documentId = new ObjectId(req.params.id);
+    } catch (error) {
+        res.status(422).json({ message: `Invalid issue ID format: ${error}` });
+        return;
+    }
 
-//     db.collection('issues').insertOne(IssueHelper.cleanupIssue(newIssue)).then(result =>
-//         db.collection('issues').find({ _id: result.insertedId }).limit(1)
-//         .next()
-//     )
-//     .then(savedIssue => {
-//         res.json(savedIssue);
-//     })
-//     .catch(error => {
-//         console.log(error);
-//         res.status(500).json({ message: `Internal Server Error: ${error}` });
-//     });
-// });
-// router.get('/issues/:id', (req, res) => {
-//     let issueId;
-//     try {
-//         issueId = new ObjectId(req.params.id);
-//     } catch (error) {
-//         res.status(422).json({ message: `Invalid issue ID format: ${error}` });
-//         return;
-//     }
-//     db.collection('issues').find({ _id: issueId }).limit(1)
-//         .next()
-//         .then(issue => {
-//             if (!issue) res.status(404).json({ message: `No such issue: ${issueId}` });
-//             else res.json(issue);
-//         })
-//         .catch(error => {
-//             console.log(error);
-//             res.status(500).json({ message: `Internal Server Error: ${error}` });
-//         });
-// });
+    Employee.findOne({ _id: documentId }).then(employee => {
+        if (!employee) res.status(404).json({ message: `No such employee: ${documentId}` });
+        else res.json(employee);
+    }).catch(error => {
+        console.log(error);
+        res.status(500).json({ message: `Internal Server Error: ${error}` });
+    });
+});
 // // Add routes for handling PATCH request
 // router.put('/issues/:id', (req, res) => {
 //     let issueId;
