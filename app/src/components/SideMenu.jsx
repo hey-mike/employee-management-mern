@@ -2,8 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withRouter, Link } from 'react-router-dom';
 
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
@@ -12,6 +13,10 @@ import ListIcon from 'material-ui-icons/List';
 import ReportIcon from 'material-ui-icons/Report';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+
+import classNames from 'classnames';
+import AvatarImg from '../images/avatar.png'
+import Avatar from 'material-ui/Avatar';
 
 import Blue from 'material-ui/colors/blue';
 
@@ -25,11 +30,21 @@ const styleSheet = createStyleSheet(theme => ({
     flex: 'initial',
   },
   profile: {
-    padding: theme.spacing.unit * 2,
+    // Name of the rule
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
   },
-  sideMenu: {
-    top: 64
-  }
+  profileItem: {
+    paddingTop: 0,
+    paddingBottom: 0
+  },
+  bigAvatar: {
+    width: 50,
+    height: 50,
+  },
 }));
 
 class SideMenu extends Component {
@@ -54,48 +69,7 @@ class SideMenu extends Component {
   }
 
   render() {
-    const classes = this.props.classes;
-
-    const mailFolderListItems = (
-      <div>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <ListIcon />
-          </ListItemIcon>
-          <ListItemText primary="Issue" />
-        </ListItem>
-      </div>
-    );
-
-    const otherMailFolderListItems = (
-      <div>
-        <ListItem button>
-          <ListItemIcon>
-            <ReportIcon />
-          </ListItemIcon>
-          <ListItemText primary="Report" />
-        </ListItem>
-
-      </div>
-    );
-
-    const sideList = (
-      <div className={classes.sideMenu}>
-        <List className={classes.list}>
-          {mailFolderListItems}
-        </List>
-        <Divider />
-        <List className={classes.list}>
-          {otherMailFolderListItems}
-        </List>
-      </div>
-    );
+    const { classes, history } = this.props;
 
     return (
       <Drawer
@@ -105,14 +79,31 @@ class SideMenu extends Component {
         style={{ zIndex: 10 }}
         classes={{ paper: classes.sideMenu }}
       >
+        <div className={classes.profile}>
+          <List className={classes.list}>
+            <ListItem>
+              <Avatar
+                alt="Adelle Charles"
+                src={AvatarImg}
+                className={classNames(classes.avatar, classes.bigAvatar)}
+              />
+            </ListItem>
+            <ListItem className={classes.profileItem}>
+              One Punch Man
+            </ListItem>
+            <ListItem className={classes.profileItem}>
+              onepunch@gmail.com.au
+            </ListItem>
+          </List>
+        </div>
         <List className={classes.list}>
-          <ListItem button>
+          <ListItem button onClick={() => history.push('/dashboard')}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={() => history.push('/employees')}>
             <ListItemIcon>
               <ListIcon />
             </ListItemIcon>
@@ -133,6 +124,7 @@ class SideMenu extends Component {
 
 SideMenu.propTypes = {
   classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(SideMenu);
+export default withRouter(withStyles(styleSheet)(SideMenu));

@@ -2,8 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-
-
 import { Link } from 'react-router-dom';
 import qs from 'query-string';
 import { Button, Glyphicon, Table, Panel, Pagination } from 'react-bootstrap';
@@ -41,9 +39,7 @@ class EmployeePage extends React.Component {
     render() {
         let initFilter = qs.parse(this.props.location.search);
         return (
-            <div>
-                <EmployeeTable employees={this.props.employees} isFetching={this.props.isFetching}/>
-            </div>
+            <EmployeeTable employees={this.props.employees} isFetching={this.props.isFetching} />
         );
     }
 }

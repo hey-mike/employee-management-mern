@@ -7,13 +7,20 @@ import AccountCircleIcon from 'material-ui-icons/AccountCircle';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
+import Avatar from 'material-ui/Avatar';
+import classNames from 'classnames';
+import uxecoImage from '../images/avatar.png'
 
 
 const styleSheet = createStyleSheet(theme => ({
   root: {
   },
   avatar: {
-    margin: theme.spacing.unit
+
+  },
+  bigAvatar: {
+    width: 50,
+    height: 50,
   },
   flex: {
     flex: 1,
@@ -59,9 +66,14 @@ class AdminMenu extends React.Component {
     return (
 
       <div className={classes.root}>
-        <IconButton color="contrast" className={classes.avatar} onClick={this.handleClickListItem}>
+        <Avatar
+          alt="Adelle Charles"
+          src={uxecoImage}
+          className={classNames(classes.avatar, classes.bigAvatar)}
+        />
+        {/* <IconButton color="contrast" className={classes.avatar} onClick={this.handleClickListItem}>
           <AccountCircleIcon />
-        </IconButton>
+        </IconButton> */}
         {/* <List>
           <ListItem
             button

@@ -13,7 +13,7 @@ const Routes = () => (
   <Switch>
     <Redirect exact from="/" to="/employees" />
     <Route exact path="/employees" component={withRouter(EmployeePage)} />
-    <Route exact path="/reports" component={withRouter(IssueReport)} />
+    <Route exact path="/dashboard" component={withRouter(IssueReport)} />
     <Route exact path="/employees/:id" component={EmployeeEdit} />
     <Route component={NoMatch} />
   </Switch>

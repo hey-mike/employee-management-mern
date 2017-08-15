@@ -8,6 +8,8 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
 
 
 import Drawer from './Drawer.jsx';
@@ -15,7 +17,7 @@ import AdminMenu from './AdminMenu.jsx';
 
 const styleSheet = createStyleSheet(theme => ({
   root: {
-    width: '100%',
+    width: 'calc(100% - 250px)'
   },
   drawer: {
     flex: 0
@@ -28,15 +30,17 @@ const styleSheet = createStyleSheet(theme => ({
 function Header(props) {
   const { classes, login } = props;
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" classes={{ root: classes.root }}>
       <Toolbar>
-         {/* <Drawer className={classes.drawer} />  */}
+        <IconButton color="contrast">
+          <MenuIcon />
+        </IconButton>
         <Typography type="title" color="inherit" className={classes.flex}>
-          Issue Tracker
+          Employee Management
           </Typography>
-
-        <Button color="contrast" onClick={() => props.history.push('/issues')}>Issues</Button>
-        <Button color="contrast" onClick={() => props.history.push('/reports')}>Reports</Button>
+        {/* 
+        <Button color="contrast" onClick={() => props.history.push('/issues')}>Employees</Button>
+        <Button color="contrast" onClick={() => props.history.push('/reports')}>Reports</Button> */}
         <AdminMenu />
       </Toolbar>
     </AppBar>

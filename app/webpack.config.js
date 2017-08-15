@@ -33,12 +33,24 @@ module.exports = {
     rules: [{
       test: /\.jsx?$/,
       exclude: /(node_modules|bower_components)/,
-      loader: 'babel-loader',
-      options: {
-        presets: ['react', 'es2015'],
-        plugins: [require('babel-plugin-transform-object-rest-spread')]
-      }
-    }, ]
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          presets: ['react', 'es2015'],
+          plugins: [require('babel-plugin-transform-object-rest-spread')]
+        }
+      }]
+    },
+    {
+      test: /\.(png|jpg|gif)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+          }
+        }
+      ]
+    }]
   },
   resolve: {
     modules: [path.resolve(__dirname, "src"), "node_modules"]
