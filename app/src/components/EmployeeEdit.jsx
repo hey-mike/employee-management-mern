@@ -34,11 +34,11 @@ const styleSheet = createStyleSheet(theme => ({
 	}
 }));
 
-class IssueEdit extends React.Component {
+class EmployeeEdit extends React.Component {
 	static dataFetcher({ params, urlBase }) {
 		return fetch(`${urlBase || ''}/api/issues/${params.id}`).then(response => {
 			if (!response.ok) return response.json().then(error => Promise.reject(error));
-			return response.json().then(data => ({ IssueEdit: data }));
+			return response.json().then(data => ({ EmployeeEdit: data }));
 		});
 	}
 	constructor(props) {
@@ -144,9 +144,9 @@ class IssueEdit extends React.Component {
 	}
 	loadData() {
 		this.setState({ isFetching: true });
-		IssueEdit.dataFetcher({ params: this.props.match.params })
+		EmployeeEdit.dataFetcher({ params: this.props.match.params })
 			.then(data => {
-				const issue = data.IssueEdit;
+				const issue = data.EmployeeEdit;
 				issue.created = new Date(issue.created);
 				issue.completionDate = issue.completionDate != null ? this.formatDate(issue.completionDate) : null;
 				console.log('issue.completionDate', issue.completionDate);
@@ -206,9 +206,9 @@ class IssueEdit extends React.Component {
 		);
 	}
 }
-IssueEdit.propTypes = {
+EmployeeEdit.propTypes = {
 	match: PropTypes.object.isRequired
 };
 
-const componentWithStyles = withStyles(styleSheet)(IssueEdit);
+const componentWithStyles = withStyles(styleSheet)(EmployeeEdit);
 export default connect()(componentWithStyles);

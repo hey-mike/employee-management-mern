@@ -8,7 +8,7 @@ import qs from 'query-string';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchIssuesIfNeeded, fetchIssues } from '../actions/issueActions'
+import { fetchEmployees } from '../actions/employeeActions'
 
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import keycode from 'keycode';
@@ -49,16 +49,11 @@ const IssueRow = (props) => {
       <TableCell checkbox>
         <Checkbox checked={isSelected} />
       </TableCell>
-      <TableCell><Link to={`/issues/${issue._id}`}>
+      <TableCell><Link to={`/employees/${issue._id}`}>
         {issue._id.substr(-4)}</Link></TableCell>
-      <TableCell>{issue.title}</TableCell>
+      <TableCell>{issue.name}</TableCell>
+      <TableCell>{issue.createdAt.toDateString()}</TableCell>
       <TableCell>{issue.status}</TableCell>
-      <TableCell>{issue.owner}</TableCell>
-      <TableCell>{issue.created.toDateString()}</TableCell>
-      {/* <TableCell>{issue.effort}</TableCell> */}
-      {/* <TableCell>{issue.completionDate ?
-        issue.completionDate.toDateString() : ''}</TableCell> */}
-
     </TableRow>
   )
 }
@@ -79,15 +74,11 @@ const styleSheet = createStyleSheet(theme => ({
 }));
 const columnData = [
   { id: 'id', numeric: false, disablePadding: false, label: 'Id' },
-  { id: 'title', numeric: false, disablePadding: false, label: 'Title' },
+  { id: 'name', numeric: false, disablePadding: false, label: 'Title' },
   { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
-  { id: 'owner', numeric: false, disablePadding: false, label: 'Owner' },
   { id: 'created', numeric: false, disablePadding: false, label: 'Created' },
-  // { id: 'effor', numeric: false, disablePadding: false, label: 'Effort' },
-  // { id: 'completion', numeric: false, disablePadding: false, label: 'Completion Date' },
-
 ];
-class IssueDataTable extends Component {
+class EmployeeTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -108,19 +99,19 @@ class IssueDataTable extends Component {
   }
   componentWillReceiveProps(nextPros) {
     const newSelected = this.state.selected.filter(function (id) {
-      return nextPros.deletedIssues.indexOf(id) === -1;
+      return nextPros.deletedEmployees.indexOf(id) === -1;
     });
     this.setState({ selected: newSelected });
   }
   componentDidMount() {
-    this.props.dispatch(fetchIssues(this.props.location, this.state.pageSize));
+    this.props.dispatch(fetchEmployees(this.props.location, this.state.pageSize));
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.location.search != this.props.location.search
-      || prevProps.deletedIssues.length != this.props.deletedIssues.length) {
-      const { issues } = this.props;
-      this.props.dispatch(fetchIssues(this.props.location, this.state.pageSize));
+      || prevProps.deletedEmployees.length != this.props.deletedEmployees.length) {
+      const { employees } = this.props;
+      this.props.dispatch(fetchEmployees(this.props.location, this.state.pageSize));
     }
   }
 
@@ -147,16 +138,16 @@ class IssueDataTable extends Component {
       order = 'asc';
     }
 
-    const issues = this.props.issues.sort(
+    const employees = this.props.employees.sort(
       (a, b) => (order === 'desc' ? b[orderBy] > a[orderBy] : a[orderBy] > b[orderBy]),
     );
 
-    this.setState({ issues, order, orderBy });
+    this.setState({ employees, order, orderBy });
   };
 
   handleSelectAllClick(event, checked) {
     if (checked) {
-      this.setState({ selected: this.props.issues.map(issues => issues._id) });
+      this.setState({ selected: this.props.employees.map(employees => employees._id) });
       return;
     }
     this.setState({ selected: [] });
@@ -196,13 +187,13 @@ class IssueDataTable extends Component {
   render() {
     const { classes, isFetching, totalCount } = this.props;
     const { order, orderBy, selected } = this.state;
-    const issueRows = this.props.issues.map(issue => <IssueRow key={issue._id} issue={issue} isSelected={this.isSelected(issue._id)}
+    const issueRows = this.props.employees.map(issue => <IssueRow key={issue._id} issue={issue} isSelected={this.isSelected(issue._id)}
       handleClick={this.handleClick} handleKeyDown={this.handleKeyDown} />)
 
 
     return (
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar title="Issues" selected={selected} deleteIssue={this.deleteIssue} />
+        <EnhancedTableToolbar title="Employees" selected={selected} deleteIssue={this.deleteIssue} />
         {isFetching && <LinearProgress className={classes.progress} />}
         <Table>
           <EnhancedTableHead
@@ -216,7 +207,7 @@ class IssueDataTable extends Component {
           <TableBody>{issueRows}</TableBody>
         </Table>
         <EnhancedTableFooter
-          issueSize={this.props.issues.length}
+          issueSize={this.props.employees.length}
           pageSize={this.state.pageSize}
           lastPage={this.lastPage}
           nextPage={this.nextPage} />
@@ -225,28 +216,28 @@ class IssueDataTable extends Component {
   }
 }
 
-IssueDataTable.propTypes = {
+EmployeeTable.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
-  issues: PropTypes.array.isRequired,
+  employees: PropTypes.array.isRequired,
   totalCount: PropTypes.number.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 };
 const mapStateToProps = (state, ownProps) => {
-  const { issues, totalCount, isFetching, lastUpdated, deletedIssues, pageSize, pageNum, offset } = state.issuesState;
+  const { employees, totalCount, isFetching, lastUpdated, deletedEmployees, pageSize, pageNum, offset } = state.employeesState;
   return {
-    issues: issues,
+    employees: employees,
     totalCount: totalCount,
     isFetching: isFetching,
     lastUpdated: lastUpdated,
-    deletedIssues: deletedIssues,
+    deletedEmployees: deletedEmployees,
     pageNum: pageNum,
     offset: offset
   }
 };
 
 
-const componentWithStyles = withStyles(styleSheet)(IssueDataTable);
+const componentWithStyles = withStyles(styleSheet)(EmployeeTable);
 export default withRouter(connect(mapStateToProps)(componentWithStyles));

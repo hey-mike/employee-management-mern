@@ -98,7 +98,7 @@ EnhancedTableToolbar.propTypes = {
   issueSize: PropTypes.number.isRequired,
 };
 const mapStateToProps = (state, ownProps) => {
-  const { issues, totalCount, isFetching, lastUpdated, deletedIssues, pageSize, pageNum, offset } = state.issuesState;
+  const { issues, totalCount, isFetching, lastUpdated, deletedIssues, pageSize, pageNum, offset } = state.employeesState;
   return {
     issues: issues,
     totalCount: totalCount,

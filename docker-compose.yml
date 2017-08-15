@@ -2,8 +2,8 @@ version: "3"
 
 services:
   myapp:
-    container_name: node-app
-    image: michael/node-app
+    container_name: employee
+    image: node/employee
     build: .
     environment:
       - NODE_ENV=development

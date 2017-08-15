@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "employee-management-system",
   "version": "1.0.0",
-  "description": "",
+  "description": "A MERN stack EMS",
   "main": "server.js",
   "scripts": {
     "start": "nodemon --legacy-watch -w server server/server.js",
@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "chart.js": "^2.6.0",
@@ -26,6 +27,8 @@
     "material-ui": "^1.0.0-beta.4",
     "material-ui-icons": "^1.0.0-alpha.19",
     "mongodb": "^2.2.31",
+    "mongoose": "^4.11.7",
+    "morgan": "^1.8.2",
     "prop-types": "^15.5.10",
     "query-string": "^5.0.0",
     "react": "^15.6.1",
