@@ -10,6 +10,11 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import ExitToAppIcon from 'material-ui-icons/ExitToApp';
+import ChatBubbleIcon from 'material-ui-icons/ChatBubble';
+
+import Badge from 'material-ui/Badge';
+
 
 
 import Drawer from './Drawer.jsx';
@@ -24,7 +29,14 @@ const styleSheet = createStyleSheet(theme => ({
   },
   flex: {
     flex: 1,
-  }
+  },
+  badge: {
+    margin: `0 ${theme.spacing.unit * 2}px`,
+    width: "100%",
+    display: "flex",
+    alignItems: "inherit",
+    justifycontent: "inherit",
+  },
 }));
 
 function Header(props) {
@@ -32,16 +44,17 @@ function Header(props) {
   return (
     <AppBar position="fixed" classes={{ root: classes.root }}>
       <Toolbar>
-        <IconButton color="contrast">
-          <MenuIcon />
-        </IconButton>
         <Typography type="title" color="inherit" className={classes.flex}>
           Employee Management
           </Typography>
-        {/* 
-        <Button color="contrast" onClick={() => props.history.push('/issues')}>Employees</Button>
-        <Button color="contrast" onClick={() => props.history.push('/reports')}>Reports</Button> */}
-        <AdminMenu />
+
+        <IconButton color="contrast" onClick={() => props.history.push('/issues')}>
+          <Badge className={classes.badge} badgeContent={4} color="accent">
+            <ChatBubbleIcon />
+          </Badge>
+        </IconButton>
+        <IconButton color="contrast" onClick={() => props.history.push('/reports')}> <ExitToAppIcon /></IconButton>
+        {/* <AdminMenu /> */}
       </Toolbar>
     </AppBar>
   );
@@ -49,7 +62,6 @@ function Header(props) {
 
 
 Header.prototypes = {
-  showError: PropTypes.func.isRequired,
   showSuccess: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired
 }

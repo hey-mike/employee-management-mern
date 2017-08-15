@@ -123,7 +123,6 @@ class EmployeeEdit extends React.Component {
 				});
 			} else {
 				response.json().then(error => {
-					// this.props.showError(`Failed to update issue: ${error.message}`);
 					this.props.dispatch(addNotification(`Failed to update issue: ${error.message}`, 'error'));
 				});
 			}
