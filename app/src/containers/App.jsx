@@ -11,13 +11,18 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 
 
 const styleSheet = createStyleSheet(theme => ({
+    drawer: {
+        top:65
+    },
     right: {
         width: 'calc(100% - 250px)',
         float: 'right'
     },
     content: {
-        margin: theme.spacing.unit,
-        padding: theme.spacing.unit,
+        width: 'calc(100% - 250px)',
+        float: 'right',
+        padding: theme.spacing.unit * 2,
+        paddingTop: 80
     }
 }));
 
@@ -32,12 +37,11 @@ class App extends React.Component {
         return (
             <div>
                 <SideMenu />
-                <div className={classes.right}>
-                    <Header />
-                    <div className={classes.content}>
-                        <Routes />
-                    </div>
+                <Header />
+                <div className={classes.content}>
+                    <Routes />
                 </div>
+
                 <Notification />
             </div >
         );

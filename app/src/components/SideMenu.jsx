@@ -24,15 +24,11 @@ const styleSheet = createStyleSheet(theme => ({
     width: 'auto',
     flex: 'initial',
   },
-  drawerHeader: {
-    backgroundColor: theme.palette.primary[500],
-    height: 64
-  },
   profile: {
     padding: theme.spacing.unit * 2,
   },
   sideMenu: {
-    background: Blue.A400
+    top: 64
   }
 }));
 
@@ -90,7 +86,7 @@ class SideMenu extends Component {
     );
 
     const sideList = (
-      <div>
+      <div className={classes.sideMenu}>
         <List className={classes.list} disablePadding>
           {mailFolderListItems}
         </List>
@@ -107,12 +103,8 @@ class SideMenu extends Component {
         open
         onClick={this.handleClose}
         style={{ zIndex: 10 }}
+        classes={{paper: classes.sideMenu}}
       >
-        <div className={classes.drawerHeader}>
-          <div className={classes.profile}>
-            {"Admin Panel"}
-          </div>
-        </div>
         {sideList}
       </Drawer>
     );

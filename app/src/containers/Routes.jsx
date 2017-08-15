@@ -10,14 +10,12 @@ import IssueReport from '../components/IssueReport.jsx';
 const NoMatch = () => <p>Page Not Found</p>;
 
 const Routes = () => (
-  <div>
-    <Switch>
-      <Redirect exact from="/" to="/employees" />
-      <Route exact path="/employees" component={withRouter(EmployeePage)} />
-      <Route exact path="/reports" component={withRouter(IssueReport)} />
-      <Route exact path="/employees/:id" component={EmployeeEdit} />
-      <Route component={NoMatch} />
-    </Switch>
-  </div>
+  <Switch>
+    <Redirect exact from="/" to="/employees" />
+    <Route exact path="/employees" component={withRouter(EmployeePage)} />
+    <Route exact path="/reports" component={withRouter(IssueReport)} />
+    <Route exact path="/employees/:id" component={EmployeeEdit} />
+    <Route component={NoMatch} />
+  </Switch>
 )
 export default Routes;

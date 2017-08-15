@@ -28,7 +28,7 @@ const styleSheet = createStyleSheet(theme => ({
 function Header(props) {
   const { classes, login } = props;
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar>
          {/* <Drawer className={classes.drawer} />  */}
         <Typography type="title" color="inherit" className={classes.flex}>
