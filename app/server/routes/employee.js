@@ -10,7 +10,7 @@ import IssueHelper from '../issueHelper.js';
 
 // TODO: should implement range pagination instead of using skip to result in better server performance
 router.get('/', (req, res) => {
-  
+
     const filter = {};
     if (req.query.status) filter.status = req.query.status;
     if (req.query.effort_lte || req.query.effort_gte) filter.effort = {};
@@ -49,13 +49,13 @@ router.get('/', (req, res) => {
                 }
             },
         ]).exec().then(results => {
-                const stats = {};
-                results.forEach(result => {
-                    if (!stats[result._id.owner]) stats[result._id.owner] = {};
-                    stats[result._id.owner][result._id.status] = result.count;
-                });
-                res.json(stats);
-            })
+            const stats = {};
+            results.forEach(result => {
+                if (!stats[result._id.owner]) stats[result._id.owner] = {};
+                stats[result._id.owner][result._id.status] = result.count;
+            });
+            res.json(stats);
+        })
             .catch(error => {
                 console.log(error);
                 res.status(500).json({ message: `Internal Server Error: ${error}` });
@@ -106,22 +106,14 @@ router.put('/:id', (req, res) => {
     }
     const employee = req.body;
 
-    // // MongoDB update operation treats the ID specially, and leaves it
-    // // intact even if not present in the document that replaces the existing document.
-    // delete employee._id;
 
-    // const err = IssueHelper.validateIssue(employee);
-    // if (err) {
-    //     res.status(422).json({ message: `Invalid request: ${err}` });
-    //     return;
-    // }
-    Employee.findByIdAndUpdate({ _id: documentId }, employee).then(savedEmployee =>{
-            console.log('savedEmployee',savedEmployee)
-            res.json(savedEmployee);
-        }).catch(error => {
-            console.log(error);
-            res.status(500).json({ message: `Internal Server Error: ${error}` });
-        });
+    Employee.findByIdAndUpdate({ _id: documentId }, employee, { new: true }).then(savedEmployee => {
+        console.log('savedEmployee', savedEmployee)
+        res.json(savedEmployee);
+    }).catch(error => {
+        console.log(error);
+        res.status(500).json({ message: `Internal Server Error: ${error}` });
+    });
 });
 
 // // Server delete method
@@ -159,7 +151,7 @@ router.put('/:id', (req, res) => {
 //         });
 //         return;
 //     }
-  
+
 //     db.collection('issues').deleteMany({ _id: {'$in':issueIds} }).then((deleteResult) => {
 //         if (deleteResult.result.n === issueIds.length) res.json({ status: 'OK' });
 //         else res.json({ status: 'Warning: object not found' });

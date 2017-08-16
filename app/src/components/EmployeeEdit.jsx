@@ -135,7 +135,6 @@ class EmployeeEdit extends React.Component {
 			const completionDate = new Date(values.completionDate);
 			employee.completionDate = completionDate;
 		}
-
 		fetch(`/api/employee/${this.props.match.params.id}`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
@@ -145,9 +144,7 @@ class EmployeeEdit extends React.Component {
 				response.json().then(updatedEmployee => {
 					// convert to MongoDB Date object type
 					updatedEmployee.createdAt = new Date(updatedEmployee.createdAt);
-					if (updatedEmployee.completionDate) {
-						updatedEmployee.completionDate = this.formatDate(updatedEmployee.completionDate);
-					}
+	
 					this.setState({ employee: updatedEmployee });
 					// this.props.showSuccess('Updated employee successfully.');
 					this.props.dispatch(addNotification('Updated employee successfully', 'success'));
