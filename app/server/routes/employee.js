@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
+import mongoose from 'mongoose';
 
 var Employee = require("../models/employee");
 var Issue = require("../models/issue");
@@ -79,8 +80,9 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
     let documentId;
     try {
-        documentId = new ObjectId(req.params.id);
+        documentId = mongoose.Types.ObjectId(req.params.id);
     } catch (error) {
+        console.log('error', error);
         res.status(422).json({ message: `Invalid issue ID format: ${error}` });
         return;
     }
@@ -93,36 +95,35 @@ router.get('/:id', (req, res) => {
         res.status(500).json({ message: `Internal Server Error: ${error}` });
     });
 });
-// // Add routes for handling PATCH request
-// router.put('/issues/:id', (req, res) => {
-//     let issueId;
-//     try {
-//         issueId = new ObjectId(req.params.id);
-//     } catch (error) {
-//         res.status(422).json({ message: `Invalid issue ID format: ${error}` });
-//         return;
-//     }
-//     const issue = req.body;
+// Add routes for handling PATCH request
+router.put('/:id', (req, res) => {
+    let documentId;
+    try {
+        documentId = mongoose.Types.ObjectId(req.params.id);
+    } catch (error) {
+        res.status(422).json({ message: `Invalid issue ID format: ${error}` });
+        return;
+    }
+    const employee = req.body;
 
-//     // MongoDB update operation treats the ID specially, and leaves it
-//     // intact even if not present in the document that replaces the existing document.
-//     delete issue._id;
+    // MongoDB update operation treats the ID specially, and leaves it
+    // intact even if not present in the document that replaces the existing document.
+    delete employee._id;
 
-//     const err = IssueHelper.validateIssue(issue);
-//     if (err) {
-//         res.status(422).json({ message: `Invalid request: ${err}` });
-//         return;
-//     }
-//     db.collection('issues').update({ _id: issueId },
-//         IssueHelper.convertIssue(issue)).then(() =>
-//             db.collection('issues').find({ _id: issueId }).limit(1).next()
-//         ).then(savedIssue => {
-//             res.json(savedIssue);
-//         }).catch(error => {
-//             console.log(error);
-//             res.status(500).json({ message: `Internal Server Error: ${error}` });
-//         });
-// });
+    const err = IssueHelper.validateIssue(employee);
+    if (err) {
+        res.status(422).json({ message: `Invalid request: ${err}` });
+        return;
+    }
+    Employee.update({ _id: issueId },
+        IssueHelper.convertIssue(employee)).then(savedIssue =>{
+            console.log('savedIssue',savedIssue)
+            res.json(savedIssue);
+        }).catch(error => {
+            console.log(error);
+            res.status(500).json({ message: `Internal Server Error: ${error}` });
+        });
+});
 
 // // Server delete method
 // router.delete('/issues/:id', (req, res) => {

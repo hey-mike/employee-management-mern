@@ -36,7 +36,7 @@ const styleSheet = createStyleSheet(theme => ({
 
 class EmployeeEdit extends React.Component {
 	static dataFetcher({ params, urlBase }) {
-		return fetch(`${urlBase || ''}/api/employees/${params.id}`).then(response => {
+		return fetch(`${urlBase || ''}/api/employee/${params.id}`).then(response => {
 			if (!response.ok) return response.json().then(error => Promise.reject(error));
 			return response.json().then(data => ({ EmployeeEdit: data }));
 		});
@@ -44,7 +44,7 @@ class EmployeeEdit extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			issue: {
+			employee: {
 				_id: '', title: '', status: '', owner: '', effort: null,
 				completionDate: null, created: null,
 			},
@@ -85,11 +85,11 @@ class EmployeeEdit extends React.Component {
 		this.setState({ invalidFields });
 	}
 	onChange(event, convertedValue) {
-		const issue = Object.assign({}, this.state.issue);
+		const employee = Object.assign({}, this.state.employee);
 
 		const value = (convertedValue !== undefined) ? convertedValue : event.target.value;
-		issue[event.target.name] = value;
-		this.setState({ issue });
+		employee[event.target.name] = value;
+		this.setState({ employee });
 	}
 	showValidation() {
 		this.setState({ showingValidation: true });
@@ -98,38 +98,7 @@ class EmployeeEdit extends React.Component {
 		this.setState({ showingValidation: false });
 	}
 
-	onSubmit(values) {
-		const issue = Object.assign({}, values);
-		if (values.completionDate) {
-			const completionDate = new Date(values.completionDate);
-			issue.completionDate = completionDate;
-		}
 
-		fetch(`/api/employees/${this.props.match.params.id}`, {
-			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(issue),
-		}).then(response => {
-			if (response.ok) {
-				response.json().then(updatedEmployee => {
-					// convert to MongoDB Date object type
-					updatedEmployee.created = new Date(updatedEmployee.created);
-					if (updatedEmployee.completionDate) {
-						updatedEmployee.completionDate = this.formatDate(updatedEmployee.completionDate);
-					}
-					this.setState({ issue: updatedEmployee });
-					// this.props.showSuccess('Updated issue successfully.');
-					this.props.dispatch(addNotification('Updated issue successfully', 'success'));
-				});
-			} else {
-				response.json().then(error => {
-					this.props.dispatch(addNotification(`Failed to update issue: ${error.message}`, 'error'));
-				});
-			}
-		}).catch(err => {
-			this.props.dispatch(addNotification(`Failed to update issue: ${err.message}`, 'success'));
-		});
-	}
 	formatDate(date) {
 		var d = new Date(date),
 			month = '' + (d.getMonth() + 1),
@@ -145,12 +114,12 @@ class EmployeeEdit extends React.Component {
 		this.setState({ isFetching: true });
 		EmployeeEdit.dataFetcher({ params: this.props.match.params })
 			.then(data => {
-				const issue = data.EmployeeEdit;
-				issue.created = new Date(issue.created);
-				issue.completionDate = issue.completionDate != null ? this.formatDate(issue.completionDate) : null;
-				console.log('issue.completionDate', issue.completionDate);
+				const employee = data.EmployeeEdit;
+				employee.createdAt = new Date(employee.createdAt);
+				employee.completionDate = employee.completionDate != null ? this.formatDate(employee.completionDate) : null;
+				console.log('employee.completionDate', employee.completionDate);
 
-				this.setState({ issue });
+				this.setState({ employee });
 				this.setState({ isFetching: false });
 			}).catch(err => {
 				this.props.dispatch(addNotification(`Error in fetching data from server: ${err.message}`, 'success'));
@@ -160,11 +129,43 @@ class EmployeeEdit extends React.Component {
 		this.setState({ open: false });
 		this.props.history.push('/employees')
 	};
+	onSubmit(values) {
+		const employee = Object.assign({}, values);
+		if (values.completionDate) {
+			const completionDate = new Date(values.completionDate);
+			employee.completionDate = completionDate;
+		}
+
+		fetch(`/api/employee/${this.props.match.params.id}`, {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(employee),
+		}).then(response => {
+			if (response.ok) {
+				response.json().then(updatedEmployee => {
+					// convert to MongoDB Date object type
+					updatedEmployee.createdAt = new Date(updatedEmployee.createdAt);
+					if (updatedEmployee.completionDate) {
+						updatedEmployee.completionDate = this.formatDate(updatedEmployee.completionDate);
+					}
+					this.setState({ employee: updatedEmployee });
+					// this.props.showSuccess('Updated employee successfully.');
+					this.props.dispatch(addNotification('Updated employee successfully', 'success'));
+				});
+			} else {
+				response.json().then(error => {
+					this.props.dispatch(addNotification(`Failed to update employee: ${error.message}`, 'error'));
+				});
+			}
+		}).catch(err => {
+			this.props.dispatch(addNotification(`Failed to update employee: ${err.message}`, 'success'));
+		});
+	}
 	submitForm() {
 		this.props.dispatch(submit('EditIssueForm'));
 	}
 	render() {
-		const issue = this.state.issue;
+		const employee = this.state.employee;
 		let validationMessage = null;
 		if (Object.keys(this.state.invalidFields).length !== 0 && this.state.showingValidation) {
 			validationMessage = (
@@ -197,7 +198,7 @@ class EmployeeEdit extends React.Component {
 						</Toolbar>
 					</AppBar>
 					<div className={classes.formSession}>
-						<EditIssueForm issue={issue} initialValues={issue} onSubmit={this.onSubmit} />
+						<EditIssueForm employee={employee} initialValues={employee} onSubmit={this.onSubmit} />
 					</div>
 				</Dialog>
 			</div>

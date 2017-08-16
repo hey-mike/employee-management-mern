@@ -79,7 +79,7 @@ class SideMenu extends Component {
         style={{ zIndex: 10 }}
         classes={{ paper: classes.sideMenu }}
       >
-        <div className={classes.profile}>
+        {/* <div className={classes.profile}>
           <List className={classes.list}>
             <ListItem>
               <Avatar
@@ -95,7 +95,7 @@ class SideMenu extends Component {
               onepunch@gmail.com.au
             </ListItem>
           </List>
-        </div>
+        </div> */}
         <List className={classes.list}>
           <ListItem button onClick={() => history.push('/dashboard')}>
             <ListItemIcon>

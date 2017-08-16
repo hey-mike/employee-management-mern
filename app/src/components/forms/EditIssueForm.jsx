@@ -52,7 +52,7 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
 
 
 let EditIssueForm = props => {
-  const { handleSubmit, issue, initialValues } = props;
+  const { handleSubmit, employee, initialValues } = props;
   const classes = props.classes;
 
   return (
@@ -60,11 +60,11 @@ let EditIssueForm = props => {
       <form onSubmit={handleSubmit}>
         <div className={classes.formTitle}>
           <Typography type="title" color="secondary" className={classes.title} gutterBottom={true}>
-            ID: {issue._id}
+            ID: {employee._id}
           </Typography>
 
           <Typography type="title" color="secondary" className={classes.title} gutterBottom={true}>
-            Created At: {issue.created ? issue.created.toDateString() : ''}
+            Created At: {employee.createdAt ? employee.createdAt.toDateString() : ''}
           </Typography>
         </div>
         <FormGroup className={classes.FormGroup} row={true}>
