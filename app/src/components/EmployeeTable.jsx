@@ -52,6 +52,7 @@ const EmployeeRow = (props) => {
       <TableCell><Link to={`/employees/${issue._id}`}>
         {issue._id.substr(-4)}</Link></TableCell>
       <TableCell>{issue.name}</TableCell>
+      <TableCell>{issue.title}</TableCell>
       <TableCell>{issue.createdAt.toDateString()}</TableCell>
       <TableCell>{issue.status}</TableCell>
     </TableRow>
@@ -74,9 +75,10 @@ const styleSheet = createStyleSheet(theme => ({
 }));
 const columnData = [
   { id: 'id', numeric: false, disablePadding: false, label: 'Id' },
-  { id: 'name', numeric: false, disablePadding: false, label: 'Title' },
-  { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
+  { id: 'name', numeric: false, disablePadding: false, label: 'Name' },
+  { id: 'title', numeric: false, disablePadding: false, label: 'Title' },
   { id: 'created', numeric: false, disablePadding: false, label: 'Created' },
+  { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
 ];
 class EmployeeTable extends Component {
   constructor(props) {
