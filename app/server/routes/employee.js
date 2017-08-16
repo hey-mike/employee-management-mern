@@ -70,8 +70,8 @@ router.post('/', (req, res) => {
     }
 
     var newUser = new Employee(newEmployee);
-    newUser.save().then(savedIssue => {
-        res.json(savedIssue);
+    newUser.save().then(savedEmployee => {
+        res.json(savedEmployee);
     }).catch(error => {
         console.log(error);
         res.status(500).json({ message: `Internal Server Error: ${error}` });
@@ -106,19 +106,18 @@ router.put('/:id', (req, res) => {
     }
     const employee = req.body;
 
-    // MongoDB update operation treats the ID specially, and leaves it
-    // intact even if not present in the document that replaces the existing document.
-    delete employee._id;
+    // // MongoDB update operation treats the ID specially, and leaves it
+    // // intact even if not present in the document that replaces the existing document.
+    // delete employee._id;
 
-    const err = IssueHelper.validateIssue(employee);
-    if (err) {
-        res.status(422).json({ message: `Invalid request: ${err}` });
-        return;
-    }
-    Employee.update({ _id: issueId },
-        IssueHelper.convertIssue(employee)).then(savedIssue =>{
-            console.log('savedIssue',savedIssue)
-            res.json(savedIssue);
+    // const err = IssueHelper.validateIssue(employee);
+    // if (err) {
+    //     res.status(422).json({ message: `Invalid request: ${err}` });
+    //     return;
+    // }
+    Employee.findByIdAndUpdate({ _id: documentId }, employee).then(savedEmployee =>{
+            console.log('savedEmployee',savedEmployee)
+            res.json(savedEmployee);
         }).catch(error => {
             console.log(error);
             res.status(500).json({ message: `Internal Server Error: ${error}` });
