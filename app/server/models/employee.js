@@ -3,8 +3,6 @@ var Schema = mongoose.Schema;
 
 var employeeSchema = new Schema({
   id: Number,
-  firstName: String,
-  lastName: String,
   name: {type: String, required: true},
   managerId: Number,
   reports: Number,

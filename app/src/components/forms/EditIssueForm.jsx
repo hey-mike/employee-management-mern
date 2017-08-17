@@ -67,16 +67,81 @@ let EditIssueForm = props => {
             Created At: {employee.createdAt ? employee.createdAt.toDateString() : ''}
           </Typography>
         </div>
-        <FormGroup className={classes.FormGroup} row={true}>
-          <Field name="title" label="Title" component={renderTextField} className={classes.textField} fullWidth={true} />
-        </FormGroup>
 
-        <FormGroup className={classes.FormGroup} row={true}>
-          <Field name="name" label="Name" component={renderTextField} className={classes.textField} fullWidth={true} />
-        </FormGroup>
+        <Grid container>
+          <Grid item xs={3}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="name" label="Name" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+
+          <Grid item xs={3}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="title" label="Title" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+
+          <Grid item xs={3}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="age" label="Age" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+
+          <Grid item xs={3}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="sex" label="Sex" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+        </Grid>
+
+
 
         <Grid container>
           <Grid item xs={4}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="department" label="Deparment" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+          <Grid item xs={4}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="startDate" label="Start Date" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+
+          <Grid item xs={4}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="leaveData" label="Leave Date" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+        </Grid>
+
+
+        <Grid container>
+          <Grid item xs={3}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="zipcode" label="Zip Code" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+
+          <Grid item xs={3}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="email" label="Email" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+
+          <Grid item xs={3}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="phone" label="Phone" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+
+          <Grid item xs={3}>
+            <FormGroup className={classes.FormGroup} row={true}>
+              <Field name="address" label="Address" component={renderTextField} className={classes.textField} fullWidth={true} />
+            </FormGroup>
+          </Grid>
+
+          {/* <Grid item xs={4}>
             <FormGroup className={classes.FormGroup} row={true}>
               <label className={classes.textField}>Status</label>
               <div className={classes.textField}>
@@ -86,7 +151,7 @@ let EditIssueForm = props => {
                 </Field>
               </div>
             </FormGroup>
-          </Grid>
+          </Grid> */}
         </Grid>
 
       </form>

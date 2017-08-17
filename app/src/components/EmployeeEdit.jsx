@@ -194,7 +194,7 @@ class EmployeeEdit extends React.Component {
 							</Typography>
 							<Button color="contrast" onClick={this.submitForm}>
 								save
-              				</Button>
+              </Button>
 						</Toolbar>
 					</AppBar>
 					<div className={classes.formSession}>
