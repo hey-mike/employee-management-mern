@@ -46,7 +46,7 @@ export const turnOffFilter = () => ({
 })
 
 const convertedEmployee = employee => {
-  employee.created = new Date(employee.created);
+  employee.createdAt = new Date(employee.createdAt);
   if (employee.completionDate) {
     employee.completionDate = new Date(employee.completionDate);
   }

@@ -1,6 +1,6 @@
 export default {
   employees: [],
-  updatedemployee:{},
+  updatedEmployee:{},
   totalCount: 0,
   isFetching: false,
   failed: false,

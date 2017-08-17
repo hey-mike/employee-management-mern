@@ -31,35 +31,35 @@ import EnhancedTableFooter from './table-issue/EnhancedTableFooter.jsx';
 
 const EmployeeRow = (props) => {
   function onDeleteClick() {
-    props.deleteIssue(props.issue);
+    props.deleteIssue(props.employee);
   }
-  const { issue, isSelected } = props;
+  const { employee, isSelected } = props;
 
   return (
     <TableRow
       hover
-      onClick={event => props.handleClick(event, issue._id)}
-      onKeyDown={event => props.handleKeyDown(event, issue._id)}
+      onClick={event => props.handleClick(event, employee._id)}
+      onKeyDown={event => props.handleKeyDown(event, employee._id)}
       role="checkbox"
       aria-checked={isSelected}
       tabIndex="-1"
-      key={issue._id}
+      key={employee._id}
       selected={isSelected}
     >
       <TableCell checkbox>
         <Checkbox checked={isSelected} />
       </TableCell>
-      <TableCell><Link to={`/employees/${issue._id}`}>
-        {issue._id.substr(-4)}</Link></TableCell>
-      <TableCell>{issue.name}</TableCell>
-      <TableCell>{issue.title}</TableCell>
-      <TableCell>{issue.createdAt.toDateString()}</TableCell>
-      <TableCell>{issue.status}</TableCell>
+      <TableCell><Link to={`/employees/${employee._id}`}>
+        {employee._id.substr(-4)}</Link></TableCell>
+      <TableCell>{employee.name}</TableCell>
+      <TableCell>{employee.title}</TableCell>
+      <TableCell>{employee.createdAt.toDateString()}</TableCell>
+      <TableCell>{employee.status}</TableCell>
     </TableRow>
   )
 }
 EmployeeRow.propTypes = {
-  issue: PropTypes.object.isRequired,
+  employee: PropTypes.object.isRequired,
 };
 
 
@@ -187,9 +187,12 @@ class EmployeeTable extends Component {
   }
 
   render() {
-    const { classes, isFetching, totalCount } = this.props;
+    const { classes, isFetching ,employees} = this.props;
     const { order, orderBy, selected } = this.state;
-    const employeeRows = this.props.employees.map(issue => <EmployeeRow key={issue._id} issue={issue} isSelected={this.isSelected(issue._id)}
+    employees.map(employee => {
+      if(employee == undefined) console.log('employee');
+    })
+    const employeeRows = employees.map(employee => <EmployeeRow key={employee._id} employee={employee} isSelected={this.isSelected(employee._id)}
       handleClick={this.handleClick} handleKeyDown={this.handleKeyDown} />)
 
 
@@ -209,7 +212,7 @@ class EmployeeTable extends Component {
           <TableBody>{employeeRows}</TableBody>
         </Table>
         <EnhancedTableFooter
-          issueSize={this.props.employees.length}
+          employeeSize={this.props.employees.length}
           pageSize={this.state.pageSize}
           lastPage={this.lastPage}
           nextPage={this.nextPage} />
@@ -222,16 +225,14 @@ EmployeeTable.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   employees: PropTypes.array.isRequired,
-  totalCount: PropTypes.number.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 };
 const mapStateToProps = (state, ownProps) => {
-  const { employees, totalCount, isFetching, lastUpdated, deletedEmployees, pageSize, pageNum, offset } = state.employeeState;
+  const { employees, isFetching, lastUpdated, deletedEmployees, pageSize, pageNum, offset } = state.employeeState;
   return {
     employees: employees,
-    totalCount: totalCount,
     isFetching: isFetching,
     lastUpdated: lastUpdated,
     deletedEmployees: deletedEmployees,

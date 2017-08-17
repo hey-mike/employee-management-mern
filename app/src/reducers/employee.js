@@ -45,15 +45,15 @@ const employees = (state = initEmployee, action) => {
 
     case types.CREATE_EMPLOYEE_SUCCESS:
       // console.log('CREATE_EMPLOYEE_SUCCESS');
-      const updatedIssue = action.issue;
+      const updatedEmployee = action.employee;
       return Object.assign({}, state, {
-        employees: state.employees.concat(updatedIssue),
+        employees: state.employees.concat(updatedEmployee),
         receivedAt: action.receivedAt
       });
 
     case types.DELETE_EMPLOYEE_SUCCESS:
       // console.log('DELETE_EMPLOYEE_SUCCESS');
-      const newEmployees = state.employees.filter(issue => action.employeeIds.indexOf(issue._id) == -1);
+      const newEmployees = state.employees.filter(employee => action.employeeIds.indexOf(employee._id) == -1);
       return Object.assign({}, state, {
         employees: newEmployees,
         deletedEmployees: state.deletedEmployees.concat(action.employeeIds),

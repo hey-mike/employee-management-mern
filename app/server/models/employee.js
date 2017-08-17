@@ -5,7 +5,7 @@ var employeeSchema = new Schema({
   id: Number,
   firstName: String,
   lastName: String,
-  name: String,
+  name: {type: String, required: true},
   managerId: Number,
   reports: Number,
   managerName: String,

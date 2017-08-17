@@ -63,9 +63,9 @@ class EnhancedTableToolbar extends Component {
     this.travelPage(-1);
   }
   render() {
-    const { classes, totalCount, offset, issueSize } = this.props;
+    const { classes, totalCount, offset, employeeSize } = this.props;
     const rowBegin = offset + 1;
-    const rowEnd = offset + issueSize;
+    const rowEnd = offset + employeeSize;
 
     return (
       <Toolbar className={classNames(classes.root, { [classes.highlight]: false })}>
@@ -95,12 +95,12 @@ EnhancedTableToolbar.propTypes = {
   location: PropTypes.object.isRequired,
   totalCount: PropTypes.number.isRequired,
   offset: PropTypes.number.isRequired,
-  issueSize: PropTypes.number.isRequired,
+  employeeSize: PropTypes.number.isRequired,
 };
 const mapStateToProps = (state, ownProps) => {
-  const { issues, totalCount, isFetching, lastUpdated, deletedIssues, pageSize, pageNum, offset } = state.employeeState;
+  const { employees, totalCount, isFetching, lastUpdated, deletedIssues, pageSize, pageNum, offset } = state.employeeState;
   return {
-    issues: issues,
+    employees: employees,
     totalCount: totalCount,
     pageNum: pageNum,
     offset: offset
