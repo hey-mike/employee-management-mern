@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { deleteBulkIssue, turnOnFilter, turnOffFilter } from '../../actions/issueActions'
+import { deleteBulkEmployee, turnOnFilter, turnOffFilter } from '../../actions/employeeActions'
 import classNames from 'classnames';
 
 import Toolbar from 'material-ui/Toolbar';
@@ -71,7 +71,7 @@ class EnhancedTableToolbar extends Component {
     // this.setState({ openFilter: false });
   }
   deleteIssue() {
-    this.props.dispatch(deleteBulkIssue(this.props.selected, this.props.location));
+    this.props.dispatch(deleteBulkEmployee(this.props.selected, this.props.location));
   }
   render() {
     const { selected, classes, dispatch } = this.props;

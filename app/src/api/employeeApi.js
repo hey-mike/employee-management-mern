@@ -55,7 +55,7 @@ class employeeApi {
     return fetch(request);
   }
 
-  static deleteBulkEmployee(issueIds) {
+  static deleteBulkEmployee(docIds) {
 
     const headers = Object.assign({
       'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ class employeeApi {
       method: 'DELETE',
       headers: headers,
       body: JSON.stringify({
-        issueIds: issueIds
+        docIds: docIds
       })
     });
 

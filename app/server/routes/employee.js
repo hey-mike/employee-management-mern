@@ -116,49 +116,46 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// // Server delete method
-// router.delete('/issues/:id', (req, res) => {
-//     let issueId;
-//     try {
-//         issueId = new ObjectId(req.params.id);
-//     } catch (error) {
-//         res.status(422).json({ message: `Invalid issue ID format: ${error}` });
-//         return;
-//     }
-//     db.collection('issues').deleteOne({ _id: issueId }).then((deleteResult) => {
-//         if (deleteResult.result.n === 1) res.json({ status: 'OK' });
-//         else res.json({ status: 'Warning: object not found' });
-//     }).catch(error => {
-//         console.log(error);
-//         res.status(500).json({ message: `Internal Server Error: ${error}` });
-//     });
-// });
+// Server delete method
+router.delete('/:id', (req, res) => {
+    let docId;
+    try {
+        docId = new ObjectId(req.params.id);
+    } catch (error) {
+        res.status(422).json({ message: `Invalid issue ID format: ${error}` });
+        return;
+    }
+    Employee.deleteOne({ _id: docId }).then((deleteResult) => {
+        if (deleteResult.result.n === 1) res.json({ status: 'OK' });
+        else res.json({ status: 'Warning: object not found' });
+    }).catch(error => {
+        console.log(error);
+        res.status(500).json({ message: `Internal Server Error: ${error}` });
+    });
+});
 
-// // For bulk delete
-// router.delete('/issues/', (req, res) => {
+// For bulk delete
+router.delete('/', (req, res) => {
 
-//     let issueIds = req.body.issueIds
+    let docIds = req.body.docIds
 
-//     try {
-//         issueIds = issueIds.map(id => new ObjectId(id));
+    try {
+        docIds = docIds.map(id =>  mongoose.Types.ObjectId(id));
+    } catch (error) {
+        res.status(422).json({
+            message: `Invalid issue ID format: ${error}`
+        });
+        return;
+    }
 
-//         // for(let i = 0; i < issueIds.length; i++) {
-//         //     issueIds[i] =  new ObjectId( issueIds[i] );
-//         // }
-//     } catch (error) {
-//         res.status(422).json({
-//             message: `Invalid issue ID format: ${error}`
-//         });
-//         return;
-//     }
-
-//     db.collection('issues').deleteMany({ _id: {'$in':issueIds} }).then((deleteResult) => {
-//         if (deleteResult.result.n === issueIds.length) res.json({ status: 'OK' });
-//         else res.json({ status: 'Warning: object not found' });
-//     }).catch(error => {
-//         console.log(error);
-//         res.status(500).json({ message: `Internal Server Error: ${error}` });
-//     });
-// });
+    Employee.deleteMany({ _id: {'$in':docIds} }).then((deleteResult) => {
+        console.log('deleteResult',deleteResult.result);
+        if (deleteResult.result.n === docIds.length) res.json({ status: 'OK' });
+        else res.json({ status: 'Warning: object not found' });
+    }).catch(error => {
+        console.log(error);
+        res.status(500).json({ message: `Internal Server Error: ${error}` });
+    });
+});
 
 module.exports = router;

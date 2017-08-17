@@ -53,10 +53,10 @@ const employees = (state = initEmployee, action) => {
 
     case types.DELETE_EMPLOYEE_SUCCESS:
       // console.log('DELETE_EMPLOYEE_SUCCESS');
-      const newIssues = state.employees.filter(issue => action.issueIds.indexOf(issue._id) == -1);
+      const newEmployees = state.employees.filter(issue => action.employeeIds.indexOf(issue._id) == -1);
       return Object.assign({}, state, {
-        employees: newIssues,
-        deletedIssues: state.deletedIssues.concat(action.issueIds),
+        employees: newEmployees,
+        deletedEmployees: state.deletedEmployees.concat(action.employeeIds),
         isFetching: false,
         receivedAt: action.receivedAt
       });
