@@ -99,7 +99,7 @@ EmployeeAddTableItem.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { updatedEmployee, error } = state.employeesState;
+  const { updatedEmployee, error } = state.employeeState;
   return {
     updatedEmployee: updatedEmployee,
     error: error,

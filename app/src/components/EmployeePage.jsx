@@ -54,13 +54,13 @@ EmployeePage.propTypes = {
 
 
 const mapStateToProps = (state, ownProps) => {
-    const employeesState = state.employeesState;
+    const employeeState = state.employeeState;
     return {
-        employees: employeesState.employees,
-        totalCount: employeesState.totalCount,
-        isFetching: employeesState.isFetching,
-        lastUpdated: employeesState.lastUpdated,
-        updatedEmployee: employeesState.updatedIssue,
+        employees: employeeState.employees,
+        totalCount: employeeState.totalCount,
+        isFetching: employeeState.isFetching,
+        lastUpdated: employeeState.lastUpdated,
+        updatedEmployee: employeeState.updatedIssue,
     }
 };
 

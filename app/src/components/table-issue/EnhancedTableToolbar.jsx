@@ -133,7 +133,7 @@ EnhancedTableToolbar.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 const mapStateToProps = (state, ownProps) => {
-  const { openFilter } = state.employeesState;
+  const { openFilter } = state.employeeState;
   return {
     openFilter: openFilter
   }

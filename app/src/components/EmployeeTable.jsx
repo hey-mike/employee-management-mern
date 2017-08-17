@@ -228,7 +228,7 @@ EmployeeTable.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 const mapStateToProps = (state, ownProps) => {
-  const { employees, totalCount, isFetching, lastUpdated, deletedEmployees, pageSize, pageNum, offset } = state.employeesState;
+  const { employees, totalCount, isFetching, lastUpdated, deletedEmployees, pageSize, pageNum, offset } = state.employeeState;
   return {
     employees: employees,
     totalCount: totalCount,

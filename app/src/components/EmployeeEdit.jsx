@@ -45,8 +45,7 @@ class EmployeeEdit extends React.Component {
 		super(props);
 		this.state = {
 			employee: {
-				_id: '', title: '', status: '', owner: '', effort: null,
-				completionDate: null, created: null,
+				title: '', name: '',
 			},
 			invalidFields: {},
 			showingValidation: false,
@@ -130,11 +129,15 @@ class EmployeeEdit extends React.Component {
 		this.props.history.push('/employees')
 	};
 	onSubmit(values) {
+		console.log('values', values);
 		const employee = Object.assign({}, values);
 		if (values.completionDate) {
 			const completionDate = new Date(values.completionDate);
 			employee.completionDate = completionDate;
 		}
+		console.log('employee', employee);
+
+
 		fetch(`/api/employee/${this.props.match.params.id}`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
@@ -144,7 +147,7 @@ class EmployeeEdit extends React.Component {
 				response.json().then(updatedEmployee => {
 					// convert to MongoDB Date object type
 					updatedEmployee.createdAt = new Date(updatedEmployee.createdAt);
-	
+
 					this.setState({ employee: updatedEmployee });
 					// this.props.showSuccess('Updated employee successfully.');
 					this.props.dispatch(addNotification('Updated employee successfully', 'success'));
