@@ -23,9 +23,7 @@ var employeeSchema = new Schema({
   startDate: Date,
   leaveData: Date,
   nationality: String
-}, {
-  timestamps: {}
-});
+}, { timestamps:  true });
 // employeeSchema.plugin(timestamps);
 const Employee = mongoose.model("employees", employeeSchema);
 module.exports = Employee;
