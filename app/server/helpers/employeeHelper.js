@@ -8,7 +8,7 @@ const validIssueStatus = {
     Verified: true,
     Closed: true,
 };
-const issueFieldType = {
+const employeeFieldType = {
     status: 'required',
     owner: 'required',
     effort: 'optional',
@@ -18,32 +18,32 @@ const issueFieldType = {
     comment: 'optional',
 }
 
-function convertIssue(issue) {
-    if (issue.created) issue.created = new Date(issue.created);
-    if (issue.completionDate) issue.completionDate = new Date(issue.completionDate);
-    return cleanupIssue(issue);
+function convertemployee(employee) {
+    if (employee.created) employee.created = new Date(employee.created);
+    if (employee.completionDate) employee.completionDate = new Date(employee.completionDate);
+    return cleanupIssue(employee);
 }
 
-function cleanupIssue(issue) {
+function cleanupIssue(employee) {
     const cleanedUpIssue = {};
     // The Object.keys() method returns an array of a given object's own enumerable properties
-    Object.keys(issue).forEach(field => {
-        if (issueFieldType[field]) cleanedUpIssue[field] = issue[field];
+    Object.keys(employee).forEach(field => {
+        if (employeeFieldType[field]) cleanedUpIssue[field] = employee[field];
     });
     return cleanedUpIssue;
 }
 
-function validateIssue(issue) {
+function validateIssue(employee) {
     const errors = [];
-    Object.keys(issueFieldType).forEach(field => {
-        if (issueFieldType[field] === 'required' && !issue[field]) {
+    Object.keys(employeeFieldType).forEach(field => {
+        if (employeeFieldType[field] === 'required' && !employee[field]) {
             errors.push(`Missing mandatory field: ${field}`);
         }
     });
 
-    if (!validIssueStatus[issue.status]) {
+    if (!validIssueStatus[employee.status]) {
         // template string ES2015 new feature
-        errors.push(`${issue.status} is not a valid status.`);
+        errors.push(`${employee.status} is not a valid status.`);
     }
     return (errors.length ? errors.join('; ') : null);
 }

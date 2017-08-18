@@ -5,12 +5,13 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon --legacy-watch -w server server/server.js",
+    "start-dist": "nodemon --legacy-watch -w server dist/server.js",
     "compile-server": "babel server --presets es2015-node6 --out-dir dist --source-maps",
     "watch-server": "babel server --presets es2015-node6 --out-dir dist --source-maps --watch",
     "start-hook": "nodemon -w server server/start_hook.js",
     "compile": "webpack",
     "watch": "webpack-dev-server --host 0.0.0.0 --hot --inline",
-    "dev-all": "npm run watch & npm run watch-server & npm start",
+    "dev-all-es6": "npm run watch & npm run watch-server & NODE_ENV=development npm run start-dist",
     "dev-all-hook": "npm run watch & npm run start-hook",
     "lint": "eslint --ext jsx,js src server webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
