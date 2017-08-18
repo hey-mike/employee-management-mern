@@ -3,7 +3,10 @@ var Schema = mongoose.Schema;
 
 var employeeSchema = new Schema({
   id: Number,
-  name: {type: String, required: true},
+  name: {
+    type: String,
+    required: true
+  },
   managerId: Number,
   reports: Number,
   managerName: String,
@@ -19,9 +22,10 @@ var employeeSchema = new Schema({
   isCurrent: Boolean,
   startDate: Date,
   leaveData: Date,
-  nationality: String,
-  createdAt: { type: Date, default: Date.now },
+  nationality: String
+}, {
+  timestamps: {}
 });
-
+// employeeSchema.plugin(timestamps);
 const Employee = mongoose.model("employees", employeeSchema);
 module.exports = Employee;
