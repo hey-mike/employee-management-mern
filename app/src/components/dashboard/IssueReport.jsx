@@ -12,7 +12,7 @@ import LineChart from './charts/LineChart.jsx'
 class IssueReport extends React.Component {
   static dataFetcher({ urlBase, location }) {
     const search = location.query ? `${location.query}&_summary` : '?_summary';
-    return fetch(`${urlBase || ''}/api/issues${search}`).then(response => {
+    return fetch(`${urlBase || ''}/api/employee${search}`).then(response => {
       if (!response.ok) return response.json().then(error => Promise.reject(error));
       return response.json().then(data => ({ IssueReport: data }));
     });

@@ -103,18 +103,33 @@ class SideMenu extends Component {
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem>
-          <ListItem button onClick={() => history.push('/employees')}>
+
+          <ListItem button onClick={() => history.push('/noitceboard')}>
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <ListItemText primary="Noticeboard" />
+          </ListItem>
+          
+          <ListItem button onClick={() => history.push('/employee')}>
             <ListItemIcon>
               <ListIcon />
             </ListItemIcon>
             <ListItemText primary="Employees" />
           </ListItem>
 
-          <ListItem button>
+          <ListItem button onClick={() => history.push('/department')}>
             <ListItemIcon>
               <ReportIcon />
             </ListItemIcon>
             <ListItemText primary="Deparment" />
+          </ListItem>
+
+          <ListItem button onClick={() => history.push('/schedule')}>
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <ListItemText primary="Schedule" />
           </ListItem>
         </List>
       </Drawer>

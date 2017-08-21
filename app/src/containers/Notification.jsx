@@ -13,7 +13,7 @@ class NotificationContainer extends Component {
   render() {
     const open = this.props.notification.message ? true : false;
     const message = this.props.notification.message ? this.props.notification.message : "";
-    
+
     return (
       <Snackbar open={open} message={message} />
     );
@@ -26,15 +26,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({
-      addNotification
-    }, dispatch)
-  };
-}
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(NotificationContainer);

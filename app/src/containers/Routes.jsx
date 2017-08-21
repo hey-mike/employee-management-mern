@@ -11,8 +11,8 @@ const NoMatch = () => <p>Page Not Found</p>;
 
 const Routes = () => (
   <Switch>
-    <Redirect exact from="/" to="/employees" />
-    <Route exact path="/employees" component={withRouter(EmployeePage)} />
+    <Redirect exact from="/" to="/employee" />
+    <Route exact path="/employee" component={withRouter(EmployeePage)} />
     <Route exact path="/dashboard" component={withRouter(IssueReport)} />
     <Route exact path="/employees/:id" component={EmployeeEdit} />
     <Route component={NoMatch} />

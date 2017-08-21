@@ -49,8 +49,8 @@ exports.employee_list = function (req, res) {
         {
           $group: {
             _id: {
-              owner: '$owner',
-              status: '$status'
+              name: '$owner',
+              createdAt: '$createdAt'
             },
             count: {
               $sum: 1
