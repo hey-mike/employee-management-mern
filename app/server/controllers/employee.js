@@ -165,14 +165,13 @@ exports.employee_update = function (req, res) {
     return;
   }
   const employee = req.body;
-
+  employee.updatedAt = new Date;
 
   Employee.findByIdAndUpdate({
     _id: documentId
   }, employee, {
     new: true
   }).then(savedEmployee => {
-    console.log('savedEmployee', savedEmployee)
     res.json(savedEmployee);
   }).catch(error => {
     console.log(error);

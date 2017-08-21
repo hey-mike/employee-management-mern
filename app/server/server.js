@@ -6,7 +6,6 @@ import 'babel-polyfill';
 
 
 const app = express();
-mongoose.plugin(require('./models/plugins/autoTime'));
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db.uri, config.db.options).then(connection => {

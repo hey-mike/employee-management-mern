@@ -10,14 +10,28 @@ export default class UploadPhoto extends React.Component {
       uploadedFile: null,
       uploadedFilepPreviewUrl: ''
     };
+
+    this.onImageDrop = this.onImageDrop.bind(this);
   }
   onImageDrop(files) {
+    // const reader = new FileReader();
+    // reader.onload = () => {
+    //     const fileAsBinaryString = reader.result;
+    //     console.log('fileAsBinaryString',fileAsBinaryString);
+    //     this.setState({
+    //       uploadedFile: files[0],
+    //       uploadedFilepPreviewUrl: [fileAsBinaryString]
+    //     });    
+    //     // do whatever you want with the file content
+    // };
+    // reader.onabort = () => console.log('file reading was aborted');
+    // reader.onerror = () => console.log('file reading has failed');
+
+    // reader.readAsBinaryString(files[0]);
     this.setState({
       uploadedFile: files[0],
-      uploadedFilepPreviewUrl: files.preview
+      uploadedFilepPreviewUrl: files[0].preview
     });
-
-    console.log('onImageDrop',files);
   }
 
   render() {
@@ -26,17 +40,27 @@ export default class UploadPhoto extends React.Component {
         <Dropzone
           multiple={false}
           accept="image/*"
-          onDrop={this.onImageDrop.bind(this)}>
-          <p>Drop an photo or click to select a photo to upload.</p>
+          onDrop={this.onImageDrop}>
+          {this.state.uploadedFilepPreviewUrl !== '' ? null :
+            <p>Drop an photo or click to select a photo to upload.</p>
+          }
+
+          <div>
+            {this.state.uploadedFilepPreviewUrl === '' ? null :
+              <div>
+                <p>{this.state.uploadedFile.name}</p>
+                <img src={this.state.uploadedFilepPreviewUrl} />
+              </div>}
+          </div>
         </Dropzone>
 
-        <div>
+        {/* <div>
           {this.state.uploadedFilepPreviewUrl === '' ? null :
             <div>
               <p>{this.state.uploadedFile.name}</p>
               <img src={this.state.uploadedFilepPreviewUrl} />
             </div>}
-        </div>
+        </div> */}
       </div>
     );
   }
