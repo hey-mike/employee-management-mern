@@ -8,7 +8,7 @@ import qs from 'query-string';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchEmployees } from '../actions/employeeActions'
+import { fetchEmployees } from '../../../actions/employeeActions'
 
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import keycode from 'keycode';
@@ -24,9 +24,9 @@ import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import { LinearProgress } from 'material-ui/Progress';
 
-import EnhancedTableHead from './table-issue/EnhancedTableHead.jsx';
-import EnhancedTableToolbar from './table-issue/EnhancedTableToolbar.jsx';
-import EnhancedTableFooter from './table-issue/EnhancedTableFooter.jsx';
+import EnhancedTableHead from './EnhancedTableHead.jsx';
+import EnhancedTableToolbar from './EnhancedTableToolbar.jsx';
+import EnhancedTableFooter from './EnhancedTableFooter.jsx';
 
 
 const EmployeeRow = (props) => {

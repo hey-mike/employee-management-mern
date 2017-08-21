@@ -24,6 +24,10 @@ var employeeSchema = new Schema({
   leaveData: Date,
   nationality: String
 }, { timestamps:  true });
-// employeeSchema.plugin(timestamps);
+employeeSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
 const Employee = mongoose.model("employees", employeeSchema);
+
 module.exports = Employee;

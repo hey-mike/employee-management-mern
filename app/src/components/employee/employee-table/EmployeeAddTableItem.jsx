@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { createEmployee } from '../../actions/employeeActions'
+import { createEmployee } from '../../../actions/employeeActions'
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
@@ -20,7 +20,7 @@ import FormControl from 'material-ui/Form/FormControl';
 
 
 
-import AddEmployeeForm from '../forms/AddEmployeeForm.jsx';
+import AddEmployeeForm from '../../forms/AddEmployeeForm.jsx';
 
 const styleSheet = createStyleSheet(theme => ({
   button: {

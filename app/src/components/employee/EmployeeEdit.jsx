@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { submit } from 'redux-form';
-import { addNotification } from '../actions/notificationActions'
+import { addNotification } from '../../actions/notificationActions'
 
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -17,7 +17,8 @@ import CloseIcon from 'material-ui-icons/Close';
 import Slide from 'material-ui/transitions/Slide';
 
 
-import EditIssueForm from './forms/EditIssueForm.jsx';
+import EditIssueForm from '../forms/EditIssueForm.jsx';
+import UploadImage from './UploadImage.jsx';
 
 
 
@@ -199,6 +200,7 @@ class EmployeeEdit extends React.Component {
 					</AppBar>
 					<div className={classes.formSession}>
 						<EditIssueForm employee={employee} initialValues={employee} onSubmit={this.onSubmit} />
+						<UploadImage />
 					</div>
 				</Dialog>
 			</div>

@@ -3,8 +3,8 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import App from './App.jsx';
 // import IssueList from './IssueList.jsx';
-import EmployeePage from '../components/EmployeePage.jsx';
-import EmployeeEdit from '../components/EmployeeEdit.jsx';
+import EmployeePage from '../components/employee/EmployeePage.jsx';
+import EmployeeEdit from '../components/employee/EmployeeEdit.jsx';
 import IssueReport from '../components/IssueReport.jsx';
 
 const NoMatch = () => <p>Page Not Found</p>;

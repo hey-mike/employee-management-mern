@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import qs from 'query-string';
 import { Button, Glyphicon, Table, Panel, Pagination } from 'react-bootstrap';
 
-import EmployeeTable from './EmployeeTable.jsx'
+import EmployeeTable from './employee-table/EmployeeTable.jsx'
 
 
 const PAGE_SIZE = 10;

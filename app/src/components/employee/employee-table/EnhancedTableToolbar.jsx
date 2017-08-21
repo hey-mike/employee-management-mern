@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { deleteBulkEmployee, turnOnFilter, turnOffFilter } from '../../actions/employeeActions'
+import { deleteBulkEmployee, turnOnFilter, turnOffFilter } from '../../../actions/employeeActions'
 import classNames from 'classnames';
 
 import Toolbar from 'material-ui/Toolbar';
