@@ -5,7 +5,7 @@ import App from './App.jsx';
 // import IssueList from './IssueList.jsx';
 import EmployeePage from '../components/employee/EmployeePage.jsx';
 import EmployeeEdit from '../components/employee/EmployeeEdit.jsx';
-import IssueReport from '../components/IssueReport.jsx';
+import IssueReport from '../components/dashboard/IssueReport.jsx';
 
 const NoMatch = () => <p>Page Not Found</p>;
 

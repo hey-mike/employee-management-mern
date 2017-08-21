@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import Header from '../components/Header.jsx';
+import Header from './Header.jsx';
+import SideMenu from './SideMenu.jsx';
+
 import Routes from './Routes.jsx';
 import Notification from './Notification.jsx';
-import SideMenu from '../components/SideMenu.jsx';
+
 import Grid from 'material-ui/Grid'
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import classNames from 'classnames';

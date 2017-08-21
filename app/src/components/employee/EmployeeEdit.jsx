@@ -17,7 +17,7 @@ import CloseIcon from 'material-ui-icons/Close';
 import Slide from 'material-ui/transitions/Slide';
 
 
-import EditIssueForm from '../forms/EditIssueForm.jsx';
+import EditEmployeeForm from './forms/EditEmployeeForm.jsx';
 import UploadImage from './UploadImage.jsx';
 
 
@@ -163,7 +163,7 @@ class EmployeeEdit extends React.Component {
 		});
 	}
 	submitForm() {
-		this.props.dispatch(submit('EditIssueForm'));
+		this.props.dispatch(submit('EditEmployeeForm'));
 	}
 	render() {
 		const employee = this.state.employee;
@@ -191,7 +191,7 @@ class EmployeeEdit extends React.Component {
 								<CloseIcon />
 							</IconButton>
 							<Typography type="title" color="inherit" className={classes.flex}>
-								Edit Issue
+								Edit Employee
 							</Typography>
 							<Button color="contrast" onClick={this.submitForm}>
 								save
@@ -199,7 +199,7 @@ class EmployeeEdit extends React.Component {
 						</Toolbar>
 					</AppBar>
 					<div className={classes.formSession}>
-						<EditIssueForm employee={employee} initialValues={employee} onSubmit={this.onSubmit} />
+						<EditEmployeeForm employee={employee} initialValues={employee} onSubmit={this.onSubmit} />
 						<UploadImage />
 					</div>
 				</Dialog>

@@ -17,8 +17,8 @@ import Badge from 'material-ui/Badge';
 
 
 
-import Drawer from './Drawer.jsx';
-import AdminMenu from './AdminMenu.jsx';
+import Drawer from '../components/Drawer.jsx';
+import AdminMenu from '../components/AdminMenu.jsx';
 
 const styleSheet = createStyleSheet(theme => ({
   root: {

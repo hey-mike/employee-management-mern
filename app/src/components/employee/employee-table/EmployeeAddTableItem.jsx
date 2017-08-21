@@ -20,7 +20,7 @@ import FormControl from 'material-ui/Form/FormControl';
 
 
 
-import AddEmployeeForm from '../../forms/AddEmployeeForm.jsx';
+import AddEmployeeForm from '../forms/AddEmployeeForm.jsx';
 
 const styleSheet = createStyleSheet(theme => ({
   button: {

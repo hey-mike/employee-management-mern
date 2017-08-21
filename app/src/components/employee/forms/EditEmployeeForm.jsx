@@ -51,7 +51,7 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
 )
 
 
-let EditIssueForm = props => {
+let EditEmployeeForm = props => {
   const { handleSubmit, employee, initialValues } = props;
   const classes = props.classes;
 
@@ -159,11 +159,11 @@ let EditIssueForm = props => {
   )
 }
 
-const componentWithStyles = withStyles(styleSheet)(EditIssueForm);
-EditIssueForm = reduxForm({
+const componentWithStyles = withStyles(styleSheet)(EditEmployeeForm);
+EditEmployeeForm = reduxForm({
   // a unique name for the form
-  form: 'EditIssueForm',
+  form: 'EditEmployeeForm',
   enableReinitialize: true
 })(componentWithStyles)
 
-export default EditIssueForm;
+export default EditEmployeeForm;

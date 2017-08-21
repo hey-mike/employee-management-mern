@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import Blue from 'material-ui/colors/blue';
 
 import Typography from 'material-ui/Typography';
-import PaperWrapper from '../PaperWrapper.jsx'
+import PaperWrapper from '../../PaperWrapper.jsx'
 
 class LineChart extends React.Component {
   constructor(props) {

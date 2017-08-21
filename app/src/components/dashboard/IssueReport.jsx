@@ -4,9 +4,8 @@ import { Panel, Table } from 'react-bootstrap';
 import qs from 'query-string';
 import Grid from 'material-ui/Grid';
 
-import StatCard from './dashboard/StatCard.jsx'
+import StatCard from './StatCard.jsx'
 import ReportDataTable from './ReportDataTable.jsx'
-import EventTraker from './event-tracker/EventTraker.jsx'
 import LineChart from './charts/LineChart.jsx'
 
 
