@@ -18,7 +18,6 @@ const styleSheet = createStyleSheet(theme => ({
         float: 'right'
     },
     content: {
-        padding: theme.spacing.unit * 2,
         paddingTop: 80
     }
 }));
