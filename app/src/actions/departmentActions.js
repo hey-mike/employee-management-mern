@@ -22,9 +22,6 @@ export const requestDepartmentsSuccess = data => ({
   receivedAt: Date.now()
 });
 export const createDepartmentSuccess = (department, history) => {
-  history.push({
-    pathname: `/departments/${department._id}`
-  })
   return {
     type: types.CREATE_DEPARTMENT_SUCCESS,
     department,
@@ -49,11 +46,6 @@ const convertedDepartment = department => {
 }
 export const fetchDepartments = (location, page_size) => dispatch => {
   const query = Object.assign({}, queryString.parse(location.search));
-  const pageStr = query._page;
-
-  delete query._page;
-  query._offset = pageStr ? (parseInt(pageStr, 10) - 1) * page_size : 0;
-  query._limit = page_size;
 
   const search = Object.keys(query).map(k => `${k}=${query[k]}`).join('&');
 
@@ -61,7 +53,7 @@ export const fetchDepartments = (location, page_size) => dispatch => {
   return departmentApi.getAllDepartments(search).then(response => {
     if (!response.ok) return response.json().then(error => Promise.reject(error));
     response.json().then(data => {
-      const departments = data.records;
+      const departments = data.departments;
       departments.forEach(department => {
         department.createdAt = new Date(department.createdAt);
         if (department.completionDate) {
@@ -70,10 +62,7 @@ export const fetchDepartments = (location, page_size) => dispatch => {
       });
 
       dispatch(requestDepartmentsSuccess({
-        pageNum: pageStr ? parseInt(pageStr) : 1,
-        offset: query._offset,
         departments,
-        totalCount: data.metadata.totalCount
       }));
       dispatch(addNotification('Load departments successfully', 'success'));
 

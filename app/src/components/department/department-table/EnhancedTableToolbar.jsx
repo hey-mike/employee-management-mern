@@ -16,8 +16,8 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { withRouter } from 'react-router-dom';
 
 
-import EmployeeAddTableItem from './EmployeeAddTableItem.jsx';
-import FilterContextMenu from './FilterContextMenu.jsx';
+import DepartmentAddTableItem from './DepartmentAddTableItem.jsx';
+// import FilterContextMenu from './FilterContextMenu.jsx';
 
 
 const toolbarStyleSheet = createStyleSheet(theme => ({
@@ -97,7 +97,7 @@ class EnhancedTableToolbar extends Component {
         </div>
       </Toolbar>
     )
-    if (this.props.openFilter) return (<FilterContextMenu history={this.props.history} closeFilter={this.closeFilter} />);
+    // if (this.props.openFilter) return (<FilterContextMenu history={this.props.history} closeFilter={this.closeFilter} />);
     return (
 
       <Toolbar
@@ -117,7 +117,7 @@ class EnhancedTableToolbar extends Component {
           </IconButton>
         </div>
         <div className={classes.actions}>
-          <EmployeeAddTableItem />
+          <DepartmentAddTableItem />
         </div>
 
       </Toolbar>
@@ -133,7 +133,7 @@ EnhancedTableToolbar.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 const mapStateToProps = (state, ownProps) => {
-  const { openFilter } = state.employeeState;
+  const { openFilter } = state.departmentState;
   return {
     openFilter: openFilter
   }

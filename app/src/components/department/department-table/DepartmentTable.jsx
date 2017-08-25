@@ -8,7 +8,7 @@ import qs from 'query-string';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchEmployees } from '../../../actions/employeeActions'
+import { fetchDepartments } from '../../../actions/departmentActions'
 
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import keycode from 'keycode';
@@ -26,40 +26,39 @@ import { LinearProgress } from 'material-ui/Progress';
 
 import EnhancedTableHead from './EnhancedTableHead.jsx';
 import EnhancedTableToolbar from './EnhancedTableToolbar.jsx';
-import EnhancedTableFooter from './EnhancedTableFooter.jsx';
+// import EnhancedTableFooter from './EnhancedTableFooter.jsx';
 
 
 const DepartmentRow = (props) => {
   function onDeleteClick() {
-    props.deleteIssue(props.employee);
+    props.deleteIssue(props.department);
   }
-  const { employee, isSelected } = props;
+  const { department, isSelected } = props;
 
   return (
     <TableRow
       hover
-      onClick={event => props.handleClick(event, employee._id)}
-      onKeyDown={event => props.handleKeyDown(event, employee._id)}
+      onClick={event => props.handleClick(event, department._id)}
+      onKeyDown={event => props.handleKeyDown(event, department._id)}
       role="checkbox"
       aria-checked={isSelected}
       tabIndex="-1"
-      key={employee._id}
+      key={department._id}
       selected={isSelected}
     >
       <TableCell checkbox>
         <Checkbox checked={isSelected} />
       </TableCell>
-      <TableCell><Link to={`/departments/${employee._id}`}>
-        {employee._id.substr(-4)}</Link></TableCell>
-      <TableCell>{employee.name}</TableCell>
-      <TableCell>{employee.title}</TableCell>
-      <TableCell>{employee.createdAt.toDateString()}</TableCell>
-      <TableCell>{employee.status}</TableCell>
+      <TableCell><Link to={`/departments/${department._id}`}>
+        {department._id.substr(-4)}</Link></TableCell>
+      <TableCell>{department.name}</TableCell>
+      <TableCell>{department.manager}</TableCell>
+      <TableCell>{department.createdAt.toDateString()}</TableCell>
     </TableRow>
   )
 }
 DepartmentRow.propTypes = {
-  employee: PropTypes.object.isRequired,
+  department: PropTypes.object.isRequired,
 };
 
 
@@ -76,7 +75,8 @@ const styleSheet = createStyleSheet(theme => ({
 const columnData = [
   { id: 'id', numeric: false, disablePadding: false, label: 'Id' },
   { id: 'name', numeric: false, disablePadding: false, label: 'Name' },
-  { id: 'manager', numeric: false, disablePadding: false, label: 'Title' }
+  { id: 'manager', numeric: false, disablePadding: false, label: 'Manager' },
+  { id: 'createdAt', numeric: false, disablePadding: false, label: 'Created' }
 ];
 class DepartmentTable extends Component {
   constructor(props) {
@@ -97,21 +97,15 @@ class DepartmentTable extends Component {
     this.setFilter = this.setFilter.bind(this);
     this.selectPage = this.selectPage.bind(this);
   }
-  componentWillReceiveProps(nextPros) {
-    const newSelected = this.state.selected.filter(function (id) {
-      return nextPros.deletedEmployees.indexOf(id) === -1;
-    });
-    this.setState({ selected: newSelected });
-  }
+
   componentDidMount() {
-    this.props.dispatch(fetchEmployees(this.props.location, this.state.pageSize));
+    this.props.dispatch(fetchDepartments(this.props.location, this.state.pageSize));
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.location.search != this.props.location.search
-      || prevProps.deletedEmployees.length != this.props.deletedEmployees.length) {
+    if (prevProps.location.search != this.props.location.search) {
       const { departments } = this.props;
-      this.props.dispatch(fetchEmployees(this.props.location, this.state.pageSize));
+      this.props.dispatch(fetchDepartments(this.props.location, this.state.pageSize));
     }
   }
 
@@ -187,16 +181,16 @@ class DepartmentTable extends Component {
   render() {
     const { classes, isFetching ,departments} = this.props;
     const { order, orderBy, selected } = this.state;
-    departments.map(employee => {
-      if(employee == undefined) console.log('employee');
+    departments.map(department => {
+      if(department == undefined) console.log('department');
     })
-    const employeeRows = departments.map(employee => <DepartmentRow key={employee._id} employee={employee} isSelected={this.isSelected(employee._id)}
+    const departmentRows = departments.map(department => <DepartmentRow key={department._id} department={department} isSelected={this.isSelected(department._id)}
       handleClick={this.handleClick} handleKeyDown={this.handleKeyDown} />)
 
 
     return (
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar title="Employees" selected={selected} deleteIssue={this.deleteIssue} />
+        <EnhancedTableToolbar title="Departments" selected={selected} deleteIssue={this.deleteIssue} />
         {isFetching && <LinearProgress className={classes.progress} />}
         <Table>
           <EnhancedTableHead
@@ -207,13 +201,8 @@ class DepartmentTable extends Component {
             onRequestSort={this.handleRequestSort}
             checked={selected.length == this.state.pageSize}
           />
-          <TableBody>{employeeRows}</TableBody>
+          <TableBody>{departmentRows}</TableBody>
         </Table>
-        <EnhancedTableFooter
-          employeeSize={this.props.departments.length}
-          pageSize={this.state.pageSize}
-          lastPage={this.lastPage}
-          nextPage={this.nextPage} />
       </Paper>
     );
   }
@@ -228,7 +217,7 @@ DepartmentTable.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 const mapStateToProps = (state, ownProps) => {
-  const { departments, isFetching, lastUpdated, deletedEmployees, pageSize, pageNum, offset } = state.employeeState;
+  const { departments, isFetching, lastUpdated, deletedEmployees, pageSize, pageNum, offset } = state.departmentState;
   return {
     departments: departments,
     isFetching: isFetching,

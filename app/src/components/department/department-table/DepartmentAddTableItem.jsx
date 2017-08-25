@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { createEmployee } from '../../../actions/employeeActions'
+import { createDepartment } from '../../../actions/departmentActions'
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
@@ -20,7 +20,7 @@ import FormControl from 'material-ui/Form/FormControl';
 
 
 
-import AddEmployeeForm from '../forms/AddEmployeeForm.jsx';
+import AddDepartmentForm from '../forms/AddDepartmentForm.jsx';
 
 const styleSheet = createStyleSheet(theme => ({
   button: {
@@ -39,7 +39,7 @@ const styleSheet = createStyleSheet(theme => ({
 }));
 
 
-class EmployeeAddTableItem extends React.Component {
+class DepartmentAddTableItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -62,14 +62,14 @@ class EmployeeAddTableItem extends React.Component {
     // e.preventDefault();
     this.hideModal();
 
-    const newEmployee = {
+    const newDepartment = {
       name: values.name,
       title: values.title,
       status: 'New',
       created: new Date(),
     };
 
-    this.props.dispatch(createEmployee(newEmployee, this.props.history));
+    this.props.dispatch(createDepartment(newDepartment, this.props.history));
   }
 
   render() {
@@ -81,17 +81,17 @@ class EmployeeAddTableItem extends React.Component {
         </IconButton>
         <Dialog open={this.state.open} classes={{ paper: classes.dialog }} onRequestClose={this.handleRequestClose}>
           <DialogTitle>
-            {"Create Employee"}
+            {"Create Deparment"}
           </DialogTitle>
           <DialogContent>
-            <AddEmployeeForm handleCancel={this.hideModal} onSubmit={this.submit} />
+            <AddDepartmentForm handleCancel={this.hideModal} onSubmit={this.submit} />
           </DialogContent>
         </Dialog>
       </div>
     )
   }
 }
-EmployeeAddTableItem.propTypes = {
+DepartmentAddTableItem.propTypes = {
   match: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
@@ -99,12 +99,12 @@ EmployeeAddTableItem.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { updatedEmployee, error } = state.employeeState;
+  const { updatedDepartment, error } = state.departmentState;
   return {
-    updatedEmployee: updatedEmployee,
+    updatedDepartment: updatedDepartment,
     error: error,
   }
 };
 
-const componentWithStyles = withStyles(styleSheet)(EmployeeAddTableItem);
+const componentWithStyles = withStyles(styleSheet)(DepartmentAddTableItem);
 export default withRouter(connect(mapStateToProps)(componentWithStyles));

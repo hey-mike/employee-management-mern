@@ -4,9 +4,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import qs from 'query-string';
-import { Button, Glyphicon, Table, Panel, Pagination } from 'react-bootstrap';
 
-// import EmployeeTable from './department-table/DepartmentTable.jsx'
+import DepartmentTable from './department-table/DepartmentTable.jsx'
 
 
 const PAGE_SIZE = 10;
@@ -40,7 +39,7 @@ class DepartmentPage extends React.Component {
         let initFilter = qs.parse(this.props.location.search);
         return (
             <div>
-                {/* <EmployeeTable departments={this.props.departments} isFetching={this.props.isFetching} /> */}
+                <DepartmentTable departments={this.props.departments} isFetching={this.props.isFetching} />
             </div>
         );
     }
@@ -48,7 +47,6 @@ class DepartmentPage extends React.Component {
 DepartmentPage.propTypes = {
     location: PropTypes.object.isRequired,
     departments: PropTypes.array.isRequired,
-    totalCount: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
     lastUpdated: PropTypes.number,
     dispatch: PropTypes.func.isRequired,
@@ -59,10 +57,9 @@ const mapStateToProps = (state, ownProps) => {
     const departmentState = state.departmentState;
     return {
         departments: departmentState.departments,
-        totalCount: departmentState.totalCount,
         isFetching: departmentState.isFetching,
         lastUpdated: departmentState.lastUpdated,
-        updatedEmployee: departmentState.updatedIssue,
+        updatedDepartment: departmentState.updatedIssue,
     }
 };
 

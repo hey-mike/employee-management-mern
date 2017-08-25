@@ -127,7 +127,7 @@ class EmployeeEdit extends React.Component {
 	}
 	hideModal() {
 		this.setState({ open: false });
-		this.props.history.push('/employees')
+		this.props.history.push('/employee')
 	};
 	onSubmit(values) {
 		console.log('values', values);
