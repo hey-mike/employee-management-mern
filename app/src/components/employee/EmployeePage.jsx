@@ -18,26 +18,11 @@ class EmployeePage extends React.Component {
             employees: [],
             totalCount: 0,
         };
-        this.setFilter = this.setFilter.bind(this);
     }
 
 
-    setFilter(query) {
-        let query_string = qs.stringify(query);
-        this.props.history.push({ pathname: this.props.location.pathname, search: query_string })
-    }
-
-
-    selectPage(eventKey) {
-
-        const query = Object.assign(this.props.location.search, { _page: eventKey });
-
-        let query_string = qs.stringify({ _page: eventKey });
-
-        this.props.history.push({ pathname: this.props.location.pathname, search: query_string })
-    }
+  
     render() {
-        let initFilter = qs.parse(this.props.location.search);
         return (
             <EmployeeTable employees={this.props.employees} isFetching={this.props.isFetching} />
         );

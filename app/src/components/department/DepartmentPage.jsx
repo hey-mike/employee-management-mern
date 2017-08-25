@@ -5,8 +5,23 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import qs from 'query-string';
 import Tabs, { Tab } from 'material-ui/Tabs';
-import DepartmentTable from './department-table/DepartmentTable.jsx'
+import SwipeableViews from 'react-swipeable-views';
 
+import DepartmentTable from './department-table/DepartmentTable.jsx'
+import EmployeeTable from '../employee/employee-table/EmployeeTable.jsx'
+
+
+function TabContainer(props) {
+    return (
+        <div style={{ padding: 20 }}>
+            {props.children}
+        </div>
+    );
+}
+
+TabContainer.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 class DepartmentPage extends React.Component {
     constructor(props) {
@@ -15,10 +30,11 @@ class DepartmentPage extends React.Component {
         this.state = {
             departments: [],
             totalCount: 0,
-            menu: 0
+            value: 0
         };
         this.setFilter = this.setFilter.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeIndex = this.handleChangeIndex.bind(this);
     }
 
 
@@ -36,24 +52,35 @@ class DepartmentPage extends React.Component {
         this.props.history.push({ pathname: this.props.location.pathname, search: query_string })
     }
 
-    handleChange(event, menu) {
-        this.setState({ menu });
+    handleChange(event, value) {
+        this.setState({ value });
     }
+    handleChangeIndex(index) {
+        this.setState({ value: index });
+    };
     render() {
         return (
             <div>
                 <Tabs
-                    value={this.state.menu}
-                    onChange={(event, menu) => this.handleChange(event,menu)}
+                    value={this.state.value}
+                    onChange={(event, value) => this.handleChange(event, value)}
                     indicatorColor="primary"
                     textColor="primary"
                     centered
                 >
                     <Tab label="Departments" />
                     <Tab label="Empolyees" />
-                    <Tab label="Teams" />
+                    <Tab label="Teams" disabled/>
                 </Tabs>
-                <DepartmentTable departments={this.props.departments} isFetching={this.props.isFetching} />
+                <SwipeableViews index={this.state.value} onChangeIndex={index => this.handleChangeIndex(index)}>
+                    <TabContainer>
+                        <DepartmentTable departments={this.props.departments} isFetching={this.props.isFetching} />
+                    </TabContainer>
+                    <TabContainer>
+                        <EmployeeTable />
+                    </TabContainer>
+                </SwipeableViews>
+
             </div>
         );
     }

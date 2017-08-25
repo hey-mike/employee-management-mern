@@ -44,6 +44,9 @@ function Header(props) {
   return (
     <AppBar position="fixed" classes={{ root: classes.root }}>
       <Toolbar>
+        <IconButton color="contrast" aria-label="Menu">
+          <MenuIcon />
+        </IconButton>
         <Typography type="title" color="inherit" className={classes.flex}>
           Employee Management
           </Typography>
