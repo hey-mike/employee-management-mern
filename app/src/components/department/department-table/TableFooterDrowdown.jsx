@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
     root: {
         width: '100%',
         maxWidth: 360,
         background: theme.palette.background.paper,
     },
-}));
+});
 
 const options = [
     '1',

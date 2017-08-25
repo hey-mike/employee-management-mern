@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchDepartments } from '../../../actions/departmentActions'
 
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import keycode from 'keycode';
 import Table, {
   TableBody,
@@ -62,7 +62,7 @@ DepartmentRow.propTypes = {
 };
 
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   paper: {
     width: '100%',
     overflowX: 'auto',
@@ -71,7 +71,7 @@ const styleSheet = createStyleSheet(theme => ({
     width: '100%',
     height: 2
   }
-}));
+});
 const columnData = [
   { id: 'id', numeric: false, disablePadding: false, label: 'Id' },
   { id: 'name', numeric: false, disablePadding: false, label: 'Name' },

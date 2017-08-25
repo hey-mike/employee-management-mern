@@ -9,13 +9,13 @@ import ClearIcon from 'material-ui-icons/Clear';
 import ClearAllIcon from 'material-ui-icons/ClearAll';
 import Input from 'material-ui/Input/Input';
 import classNames from 'classnames';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 
 import EmployeeAddTableItem from './EmployeeAddTableItem.jsx';
 import FilterStatusDropdown from './FilterStatusDropdown.jsx';
 
-const toolbarStyleSheet = createStyleSheet(theme => ({
+const toolbarStyleSheet = theme => ({
     root: {
         paddingRight: 2,
     },
@@ -43,7 +43,8 @@ const toolbarStyleSheet = createStyleSheet(theme => ({
         flex: '0 0 auto',
         marginLeft: theme.spacing.unit,
     }
-}))
+});
+
 class FilterContextMenu extends Component {
     constructor(props) {
         super(props);

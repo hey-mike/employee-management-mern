@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchEmployees } from '../../../actions/employeeActions'
 
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import keycode from 'keycode';
 import Table, {
   TableBody,
@@ -63,7 +63,7 @@ EmployeeRow.propTypes = {
 };
 
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   paper: {
     width: '100%',
     overflowX: 'auto',
@@ -72,7 +72,7 @@ const styleSheet = createStyleSheet(theme => ({
     width: '100%',
     height: 2
   }
-}));
+});
 const columnData = [
   { id: 'id', numeric: false, disablePadding: false, label: 'Id' },
   { id: 'name', numeric: false, disablePadding: false, label: 'Name' },
@@ -187,10 +187,10 @@ class EmployeeTable extends Component {
   }
 
   render() {
-    const { classes, isFetching ,employees} = this.props;
+    const { classes, isFetching, employees } = this.props;
     const { order, orderBy, selected } = this.state;
     employees.map(employee => {
-      if(employee == undefined) console.log('employee');
+      if (employee == undefined) console.log('employee');
     })
     const employeeRows = employees.map(employee => <EmployeeRow key={employee._id} employee={employee} isSelected={this.isSelected(employee._id)}
       handleClick={this.handleClick} handleKeyDown={this.handleKeyDown} />)

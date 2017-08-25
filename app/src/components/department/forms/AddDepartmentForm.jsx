@@ -3,10 +3,10 @@ import { Field, reduxForm } from 'redux-form'
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
     button: {
         margin: theme.spacing.unit,
     },
@@ -24,7 +24,7 @@ const styleSheet = createStyleSheet(theme => ({
     input: {
         margin: theme.spacing.unit,
     }
-}));
+});
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => {
     let errMsg = "";

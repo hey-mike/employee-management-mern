@@ -4,13 +4,13 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Divider from 'material-ui/Divider';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
@@ -39,7 +39,7 @@ const styleSheet = createStyleSheet(theme => ({
     paddingTop: 16,
     paddingBottom: 16
   }),
-}));
+});
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField

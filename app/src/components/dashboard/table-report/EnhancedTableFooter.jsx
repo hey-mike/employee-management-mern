@@ -10,11 +10,11 @@ import DeleteIcon from 'material-ui-icons/Delete';
 import ChevronLeft from 'material-ui-icons/ChevronLeft';
 import ChevronRight from 'material-ui-icons/ChevronRight';
 import FilterListIcon from 'material-ui-icons/FilterList';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import TableFooterDrowdown from "./TableFooterDrowdown.jsx"
 
 
-const toolbarStyleSheet = createStyleSheet(theme => ({
+const toolbarStyleSheet = theme => ({
   root: {
     paddingRight: 2,
     borderTop: "1px solid rgba(0, 0, 0, 0.075)"
@@ -38,7 +38,7 @@ const toolbarStyleSheet = createStyleSheet(theme => ({
   title: {
 
   },
-}));
+});
 
 
 class EnhancedTableToolbar extends Component {

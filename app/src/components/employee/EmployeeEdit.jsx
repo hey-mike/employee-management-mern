@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 import { addNotification } from '../../actions/notificationActions'
 
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Dialog from 'material-ui/Dialog';
 import List, { ListItem, ListItemText } from 'material-ui/List';
@@ -22,7 +22,7 @@ import UploadImage from './UploadImage.jsx';
 
 
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
 	appBar: {
 		position: 'relative',
 	},
@@ -33,7 +33,7 @@ const styleSheet = createStyleSheet(theme => ({
 	flex: {
 		flex: 1,
 	}
-}));
+});
 
 class EmployeeEdit extends React.Component {
 	static dataFetcher({ params, urlBase }) {

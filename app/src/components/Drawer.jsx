@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
@@ -14,11 +14,11 @@ import ReportIcon from 'material-ui-icons/Report';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   drawerHeader: {
     color: theme.palette.accent.A700,
     backgroundColor: theme.palette.primary.A100,
-    height:250
+    height: 250
   },
   profile: {
     paddingLeft: theme.spacing.unit * 2,
@@ -32,7 +32,7 @@ const styleSheet = createStyleSheet(theme => ({
     width: 'auto',
     flex: 'initial',
   },
-}));
+});
 
 class UndockedDrawer extends Component {
 
@@ -109,7 +109,7 @@ class UndockedDrawer extends Component {
           docked={this.state.docked}
           open={this.state.open}
           onClick={this.handleClose}
-          style={{zIndex: 10}}
+          style={{ zIndex: 10 }}
         >
           <div className={classes.drawerHeader}>
             <div className={classes.profile}>

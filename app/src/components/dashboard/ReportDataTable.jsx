@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import keycode from 'keycode';
 import Table, {
   TableBody,
@@ -51,7 +51,7 @@ StatRow.propTypes = {
 };
 
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   paper: {
     width: '100%',
     overflowX: 'auto',
@@ -60,7 +60,7 @@ const styleSheet = createStyleSheet(theme => ({
     width: '100%',
     height: 2
   }
-}));
+});
 
 class ReportDataTable extends Component {
   constructor(props) {

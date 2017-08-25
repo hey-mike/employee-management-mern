@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import AccountCircleIcon from 'material-ui-icons/AccountCircle';
 import List, { ListItem, ListItemText } from 'material-ui/List';
@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import uxecoImage from '../images/avatar.png'
 
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   root: {
   },
   avatar: {
@@ -25,7 +25,7 @@ const styleSheet = createStyleSheet(theme => ({
   flex: {
     flex: 1,
   },
-}));
+});
 
 const options = [
   'Login',

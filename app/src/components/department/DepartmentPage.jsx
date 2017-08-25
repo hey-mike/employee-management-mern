@@ -4,11 +4,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import qs from 'query-string';
-
+import Tabs, { Tab } from 'material-ui/Tabs';
 import DepartmentTable from './department-table/DepartmentTable.jsx'
 
 
-const PAGE_SIZE = 10;
 class DepartmentPage extends React.Component {
     constructor(props) {
         super(props);
@@ -16,8 +15,10 @@ class DepartmentPage extends React.Component {
         this.state = {
             departments: [],
             totalCount: 0,
+            menu: 0
         };
         this.setFilter = this.setFilter.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
 
@@ -25,7 +26,6 @@ class DepartmentPage extends React.Component {
         let query_string = qs.stringify(query);
         this.props.history.push({ pathname: this.props.location.pathname, search: query_string })
     }
-
 
     selectPage(eventKey) {
 
@@ -35,10 +35,24 @@ class DepartmentPage extends React.Component {
 
         this.props.history.push({ pathname: this.props.location.pathname, search: query_string })
     }
+
+    handleChange(event, menu) {
+        this.setState({ menu });
+    }
     render() {
-        let initFilter = qs.parse(this.props.location.search);
         return (
             <div>
+                <Tabs
+                    value={this.state.menu}
+                    onChange={(event, menu) => this.handleChange(event,menu)}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                >
+                    <Tab label="Departments" />
+                    <Tab label="Empolyees" />
+                    <Tab label="Teams" />
+                </Tabs>
                 <DepartmentTable departments={this.props.departments} isFetching={this.props.isFetching} />
             </div>
         );

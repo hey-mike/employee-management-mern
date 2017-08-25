@@ -9,11 +9,11 @@ import IconButton from 'material-ui/IconButton';
 import Add from 'material-ui-icons/Add';
 import DeleteIcon from 'material-ui-icons/Delete';
 import FilterListIcon from 'material-ui-icons/FilterList';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 
 
-const toolbarStyleSheet = createStyleSheet(theme => ({
+const toolbarStyleSheet = theme => ({
   root: {
     paddingRight: 2,
   },
@@ -36,7 +36,7 @@ const toolbarStyleSheet = createStyleSheet(theme => ({
   title: {
     flex: '0 0 auto',
   },
-}));
+});
 
 
 class EnhancedTableToolbar extends Component {

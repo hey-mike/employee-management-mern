@@ -9,10 +9,10 @@ import Routes from './Routes.jsx';
 import Notification from './Notification.jsx';
 
 import Grid from 'material-ui/Grid'
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
     right: {
         width: 'calc(100% - 250px)',
         float: 'right'
@@ -20,7 +20,7 @@ const styleSheet = createStyleSheet(theme => ({
     content: {
         paddingTop: 80
     }
-}));
+});
 
 // withRouter IssueList can use this.props.router to access the router object.(this.props.location)
 class App extends React.Component {

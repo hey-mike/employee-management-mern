@@ -12,7 +12,7 @@ import Add from 'material-ui-icons/Add';
 import DeleteIcon from 'material-ui-icons/Delete';
 
 import FilterListIcon from 'material-ui-icons/FilterList';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { withRouter } from 'react-router-dom';
 
 
@@ -20,7 +20,7 @@ import DepartmentAddTableItem from './DepartmentAddTableItem.jsx';
 // import FilterContextMenu from './FilterContextMenu.jsx';
 
 
-const toolbarStyleSheet = createStyleSheet(theme => ({
+const toolbarStyleSheet = theme => ({
   root: {
     paddingRight: 2,
   },
@@ -46,7 +46,7 @@ const toolbarStyleSheet = createStyleSheet(theme => ({
   input: {
     margin: theme.spacing.unit,
   },
-}));
+});
 
 
 

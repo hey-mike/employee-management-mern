@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import qs from 'query-string';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   root: {
     maxWidth: 360,
     background: theme.palette.background.paper,
@@ -14,7 +14,7 @@ const styleSheet = createStyleSheet(theme => ({
   title: {
     flex: '0 0 auto',
   },
-}));
+});
 
 const options = [
   { label: '(Any)', value: '' },

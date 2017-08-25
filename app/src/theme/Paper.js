@@ -1,13 +1,10 @@
 import {
-  createStyleSheet
-} from 'material-ui/styles';
-import {
   red,
   yellow,
   green
 } from 'material-ui/colors';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   root: theme.mixins.gutters({
     paddingTop: 16,
     paddingBottom: 16,
@@ -40,5 +37,5 @@ const styleSheet = createStyleSheet(theme => ({
     borderLeftWidth: '5px',
     borderLeftStyle: 'solid'
   }
-}));
+});
 export default styleSheet;

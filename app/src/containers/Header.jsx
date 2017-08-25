@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
 import { withRouter, Link } from 'react-router-dom';
 
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -20,7 +20,7 @@ import Badge from 'material-ui/Badge';
 import Drawer from '../components/Drawer.jsx';
 import AdminMenu from '../components/AdminMenu.jsx';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   root: {
     width: 'calc(100% - 250px)'
   },
@@ -37,7 +37,7 @@ const styleSheet = createStyleSheet(theme => ({
     alignItems: "inherit",
     justifycontent: "inherit",
   },
-}));
+});
 
 function Header(props) {
   const { classes, login } = props;

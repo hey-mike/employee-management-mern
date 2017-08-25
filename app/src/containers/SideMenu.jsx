@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
@@ -20,7 +20,7 @@ import Avatar from 'material-ui/Avatar';
 
 import Blue from 'material-ui/colors/blue';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   list: {
     width: 250,
     flex: 'initial',
@@ -45,7 +45,7 @@ const styleSheet = createStyleSheet(theme => ({
     width: 50,
     height: 50,
   },
-}));
+});
 
 class SideMenu extends Component {
 
@@ -110,7 +110,7 @@ class SideMenu extends Component {
             </ListItemIcon>
             <ListItemText primary="Noticeboard" />
           </ListItem>
-          
+
           <ListItem button onClick={() => history.push('/employee')}>
             <ListItemIcon>
               <ListIcon />

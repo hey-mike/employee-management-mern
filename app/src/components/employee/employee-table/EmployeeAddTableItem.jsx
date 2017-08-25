@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { createEmployee } from '../../../actions/employeeActions'
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import Dialog, {
@@ -22,7 +22,7 @@ import FormControl from 'material-ui/Form/FormControl';
 
 import AddEmployeeForm from '../forms/AddEmployeeForm.jsx';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
@@ -36,7 +36,7 @@ const styleSheet = createStyleSheet(theme => ({
   dialog: {
     width: "100%"
   }
-}));
+});
 
 
 class EmployeeAddTableItem extends React.Component {
