@@ -15,7 +15,7 @@ export const requestEmployeesError = error => ({
 });
 
 export const sendRequest = () => ({
-  type: types.SEND_REQUEST
+  type: types.SEND_EMPLOYEE_REQUEST
 })
 
 export const requestEmployeesSuccess = data => ({

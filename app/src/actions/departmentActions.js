@@ -13,7 +13,7 @@ export const requestDepartmentsError = error => ({
 });
 
 export const sendRequest = () => ({
-  type: types.SEND_REQUEST
+  type: types.SEND_DEPARTMENT_REQUEST
 })
 
 export const requestDepartmentsSuccess = data => ({

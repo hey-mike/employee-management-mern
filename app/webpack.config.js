@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
   entry: {
     app: ['./src/index.jsx'],
-    vendor: ['react', 'react-dom', 'whatwg-fetch', 'react-router-dom', 'react-bootstrap', 'react-router-bootstrap'],
+    vendor: ['react', 'react-dom', 'whatwg-fetch', 'react-router-dom', 'dhtmlx-gantt'],
   },
   output: {
     path: path.resolve(__dirname, "static"),
@@ -50,6 +50,10 @@ module.exports = {
           }
         }
       ]
+    },
+    {
+      test: /\.css$/,
+      use: [ 'style-loader', 'css-loader' ]
     }]
   },
   resolve: {

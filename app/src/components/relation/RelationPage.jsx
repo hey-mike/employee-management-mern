@@ -7,7 +7,7 @@ import qs from 'query-string';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 
-import DepartmentTable from './department-table/DepartmentTable.jsx'
+import DepartmentTable from '../department/department-table/DepartmentTable.jsx'
 import EmployeeTable from '../employee/employee-table/EmployeeTable.jsx'
 
 
@@ -23,7 +23,7 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-class DepartmentPage extends React.Component {
+class RelationPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -61,17 +61,32 @@ class DepartmentPage extends React.Component {
     render() {
         return (
             <div>
-                <EmployeeTable />
+                <Tabs
+                    value={this.state.value}
+                    onChange={(event, value) => this.handleChange(event, value)}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                >
+                    <Tab label="Departments" />
+                    <Tab label="Empolyees" />
+                    <Tab label="Teams" disabled/>
+                </Tabs>
+                <SwipeableViews index={this.state.value} onChangeIndex={index => this.handleChangeIndex(index)}>
+                    <TabContainer>
+                        <DepartmentTable />
+                    </TabContainer>
+                    <TabContainer>
+                        <EmployeeTable />
+                    </TabContainer>
+                </SwipeableViews>
             </div>
         );
     }
 }
-DepartmentPage.propTypes = {
+RelationPage.propTypes = {
     location: PropTypes.object.isRequired,
     departments: PropTypes.array.isRequired,
-    isFetching: PropTypes.bool.isRequired,
-    lastUpdated: PropTypes.number,
-    dispatch: PropTypes.func.isRequired,
 };
 
 
@@ -85,5 +100,5 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps)(DepartmentPage);
+export default connect(mapStateToProps)(RelationPage);
 
