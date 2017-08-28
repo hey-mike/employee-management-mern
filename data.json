@@ -1,0 +1,35 @@
+{
+  "chartType": "Gantt",
+  "columns": [{
+    "id": "Task ID",
+    "type": "string"
+  }, {
+    "id": "Task Name",
+    "type": "string"
+  }, {
+    "id": "Start Date",
+    "type": "date"
+  }, {
+    "id": "End Date",
+    "type": "date"
+  }, {
+    "id": "Duration",
+    "type": "number"
+  }, {
+    "id": "Percent Complete",
+    "type": "number"
+  }, {
+    "id": "Dependencies",
+    "type": "string"
+  }],
+  "rows": [
+    ["Research", "Find sources", "2014-12-31T13:00:00.000Z", "2015-01-04T13:00:00.000Z", null, 100, null],
+    ["Write", "Write paper", null, "2015-01-08T13:00:00.000Z", 259200000, 25, "Research,Outline"],
+    ["Cite", "Create bibliography", null, "2015-01-06T13:00:00.000Z", 86400000, 20, "Research"],
+    ["Complete", "Hand in paper", null, "2015-01-09T13:00:00.000Z", 86400000, 0, "Cite,Write"],
+    ["Outline", "Outline paper", null, "2015-01-05T13:00:00.000Z", 86400000, 100, "Research"]
+  ],
+  "width": "100%",
+  "options": {},
+  "chartPackages": ["gantt"]
+}
