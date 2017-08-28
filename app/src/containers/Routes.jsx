@@ -11,6 +11,8 @@ import EmployeeEdit from '../components/employee/EmployeeEdit.jsx';
 
 import IssueReport from '../components/dashboard/IssueReport.jsx';
 
+import SchedulePage from '../components/schedule/SchedulePage.jsx';
+
 const NoMatch = () => <p>Page Not Found</p>;
 
 const Routes = () => (
@@ -22,7 +24,8 @@ const Routes = () => (
     <Route exact path="/department/:id" component={withRouter(DeparmentEdit)} />
 
     <Route exact path="/employee" component={withRouter(EmployeePage)} />
-    <Route exact path="/employees/:id" component={EmployeeEdit} />
+    
+    <Route exact path="/schedule" component={withRouter(SchedulePage)} />
     
     <Route component={NoMatch} />
   </Switch>
