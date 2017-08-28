@@ -8,11 +8,15 @@ import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
+
 import DashboardIcon from 'material-ui-icons/Dashboard';
 import ListIcon from 'material-ui-icons/List';
 import ReportIcon from 'material-ui-icons/Report';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import AccountBalanceIcon from 'material-ui-icons/AccountBalance';
+import ScheduleIcon from 'material-ui-icons/Schedule';
+
 
 import classNames from 'classnames';
 import AvatarImg from '../images/avatar.png'
@@ -111,23 +115,30 @@ class SideMenu extends Component {
             <ListItemText primary="Noticeboard" />
           </ListItem>
 
-          <ListItem button onClick={() => history.push('/employee')}>
+          {/* <ListItem button onClick={() => history.push('/employee')}>
             <ListItemIcon>
               <ListIcon />
             </ListItemIcon>
             <ListItemText primary="Employees" />
           </ListItem>
-
+           */}
+          <ListItem button onClick={() => history.push('/relation')}>
+            <ListItemIcon>
+              <AccountBalanceIcon />
+            </ListItemIcon>
+            <ListItemText primary="Relations" />
+          </ListItem>
+{/* 
           <ListItem button onClick={() => history.push('/department')}>
             <ListItemIcon>
               <ReportIcon />
             </ListItemIcon>
             <ListItemText primary="Deparment" />
-          </ListItem>
+          </ListItem> */}
 
           <ListItem button onClick={() => history.push('/schedule')}>
             <ListItemIcon>
-              <ListIcon />
+              <ScheduleIcon />
             </ListItemIcon>
             <ListItemText primary="Schedule" />
           </ListItem>

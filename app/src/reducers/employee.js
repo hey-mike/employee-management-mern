@@ -11,8 +11,7 @@ Call non-pure functions, e.g. Date.now() or Math.random().
 
 const employees = (state = initEmployee, action) => {
   switch (action.type) {
-    case types.SEND_REQUEST:
-      // console.log('SEND_REQUEST', action);
+    case types.SEND_EMPLOYEE_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
       });

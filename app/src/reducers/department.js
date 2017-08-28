@@ -4,8 +4,7 @@ import initDepartment from './initDepartment';
 
 const departments = (state = initDepartment, action) => {
   switch (action.type) {
-    case types.SEND_REQUEST:
-      // console.log('SEND_REQUEST', action);
+    case types.SEND_DEPARTMENT_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
       });
