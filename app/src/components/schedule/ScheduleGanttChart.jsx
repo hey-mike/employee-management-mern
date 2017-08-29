@@ -5,6 +5,15 @@ import { Chart } from 'react-google-charts';
 export default class ScheduleGanttChart extends React.Component {
   constructor(props) {
     super(props);
+    this.chartEvents = [
+      {
+        eventName: 'select',
+        callback(Chart) {
+          // Returns Chart so you can access props and  the ChartWrapper object from chart.wrapper
+          console.log('Selected ', Chart.chart.getSelection());
+        },
+      },
+    ];
   }
   render() {
     const columns = [{
@@ -31,7 +40,7 @@ export default class ScheduleGanttChart extends React.Component {
     }];
     const rows = [
       ["Research", "Find sources", new Date("2014-12-31T13:00:00.000Z"), new Date("2015-01-04T13:00:00.000Z"), null, 100, null],
-      ["Write", "Write paper", null, new Date("2015-01-08T13:00:00.000Z"),259200000, 25, "Research,Outline"],
+      ["Write", "Write paper", null, new Date("2015-01-08T13:00:00.000Z"), 259200000, 25, "Research,Outline"],
       ["Cite", "Create bibliography", null, new Date("2015-01-06T13:00:00.000Z"), 86400000, 20, "Research"],
       ["Complete", "Hand in paper", null, new Date("2015-01-09T13:00:00.000Z"), 86400000, 0, "Cite,Write"],
       ["Outline", "Outline paper", null, new Date("2015-01-05T13:00:00.000Z"), 86400000, 100, "Research"]
@@ -45,7 +54,8 @@ export default class ScheduleGanttChart extends React.Component {
           options={{}}
           width={'100%'}
           graph_id="ScatterChart"
-          chartPackages= {["gantt"]}
+          chartPackages={["gantt"]}
+          chartEvents={this.chartEvents}
         />
       </div>
     );
