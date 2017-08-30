@@ -8,6 +8,8 @@ import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 
+import { withStyles } from 'material-ui/styles';
+
 import DepartmentTable from '../department/department-table/DepartmentTable.jsx'
 import EmployeeTable from '../employee/employee-table/EmployeeTable.jsx'
 
@@ -24,6 +26,12 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
+
+const styleSheet = theme => ({
+    root: {
+        transition: "width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms"
+      },
+});
 class RelationPage extends React.Component {
     constructor(props) {
         super(props);
@@ -64,9 +72,10 @@ class RelationPage extends React.Component {
             width:this.props.adjustWidth,
             top:64
         }
+        const { classes, login ,isDocked} = this.props;
         return (
             <div>
-                <AppBar position="fixed" color="default" style={style}>
+                <AppBar position="fixed" color="default" style={style} classes={{ root: classes.root }}>
                     <Tabs
                         value={this.state.value}
                         onChange={(event, value) => this.handleChange(event, value)}
@@ -105,5 +114,5 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps)(RelationPage);
+export default connect(mapStateToProps)(withStyles(styleSheet)(RelationPage));
 

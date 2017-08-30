@@ -50,9 +50,9 @@ const styleSheet = theme => ({
     width: 50,
     height: 50,
   },
-  sideMenu : {
+  sideMenu: {
     transform: "translate3d(0px, 0px, 0px)",
-    transition: "-webkit-transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms"
+    transition: "width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms"
   }
 });
 
@@ -78,12 +78,12 @@ class SideMenu extends Component {
   }
 
   render() {
-    const { classes, history } = this.props;
+    const { classes, history, isDocked } = this.props;
 
     return (
       <Drawer
         docked
-        open
+        open={isDocked}
         onClick={this.handleClose}
         style={{ zIndex: 10 }}
         classes={{ paper: classes.sideMenu }}
@@ -133,7 +133,7 @@ class SideMenu extends Component {
             </ListItemIcon>
             <ListItemText primary="Relations" />
           </ListItem>
-{/* 
+          {/* 
           <ListItem button onClick={() => history.push('/department')}>
             <ListItemIcon>
               <ReportIcon />

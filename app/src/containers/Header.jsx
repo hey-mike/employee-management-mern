@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { openDrawer, closeDrawer } from '../actions/drawerActions'
 
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -43,7 +44,7 @@ const styleSheet = theme => ({
 });
 
 function Header(props) {
-  const { classes, login } = props;
+  const { classes, login ,isDocked} = props;
 
   const newRoot = {
     width: props.adjustWidth
@@ -53,9 +54,12 @@ function Header(props) {
 
   return (
     // <AppBar position="fixed" classes={{ root: classes.root }}>
-    <AppBar position="fixed" style={newRoot}  classes={{ root: classes.root }}>
+    <AppBar position="fixed" style={newRoot} classes={{ root: classes.root }}>
       <Toolbar>
-        <IconButton color="contrast" aria-label="Menu">
+        <IconButton color="contrast" aria-label="Menu" onClick={() => {
+          if(isDocked) props.dispatch(closeDrawer());
+          else props.dispatch(openDrawer());
+        }}>
           <MenuIcon />
         </IconButton>
         <Typography type="title" color="inherit" className={classes.flex}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
 
 import Header from './Header.jsx';
 import SideMenu from './SideMenu.jsx';
@@ -31,12 +32,14 @@ class App extends React.Component {
     }
     render() {
         const classes = this.props.classes;
-
+        const newWidth = {
+            width:this.props.adjustWidth,
+        }
         return (
             <div>
                 <SideMenu />
                 <Header className={classes.right} />
-                <div className={classNames(classes.content, classes.right)}>
+                <div className={classNames(classes.content, classes.right)} style={newWidth}>
                     <Routes/>
                 </div>
 
@@ -45,5 +48,17 @@ class App extends React.Component {
         );
     }
 }
+App.propTypes = {
+    isDocked: PropTypes.bool.isRequired,
+    adjustWidth: PropTypes.string.isRequired,
+};
 
-export default withStyles(styleSheet)(App);
+
+const mapStateToProps = (state, ownProps) => {
+    const interfaceState = state.interfaceState;
+    return {
+        adjustWidth: interfaceState.adjustWidth,
+        isDocked: interfaceState.isDocked,
+    }
+};
+export default connect(mapStateToProps)(withStyles(styleSheet)(App));

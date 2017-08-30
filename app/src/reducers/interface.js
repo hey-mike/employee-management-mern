@@ -6,11 +6,13 @@ const interfaces = (state = initUI, action) => {
   switch (action.type) {
     case types.DOCKED_DRAWER:
       return Object.assign({}, state, {
-        isDocked: false,
+        isDocked: true,
+        adjustWidth:action.adjustWidth
       });
     case types.UNDOCKED_DRAWER:
       return Object.assign({}, state, {
-        isDocked: true,
+        isDocked: false,
+        adjustWidth:action.adjustWidth
       });
     default:
       return state
