@@ -11,18 +11,6 @@ import DepartmentTable from './department-table/DepartmentTable.jsx'
 import EmployeeTable from '../employee/employee-table/EmployeeTable.jsx'
 
 
-function TabContainer(props) {
-    return (
-        <div style={{ padding: 20 }}>
-            {props.children}
-        </div>
-    );
-}
-
-TabContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-};
-
 class DepartmentPage extends React.Component {
     constructor(props) {
         super(props);

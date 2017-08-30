@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import qs from 'query-string';
+import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 
@@ -61,17 +62,19 @@ class RelationPage extends React.Component {
     render() {
         return (
             <div>
-                <Tabs
-                    value={this.state.value}
-                    onChange={(event, value) => this.handleChange(event, value)}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    centered
-                >
-                    <Tab label="Departments" />
-                    <Tab label="Empolyees" />
-                    <Tab label="Teams" disabled/>
-                </Tabs>
+                <AppBar position="fixed" color="default">
+                    <Tabs
+                        value={this.state.value}
+                        onChange={(event, value) => this.handleChange(event, value)}
+                        indicatorColor="primary"
+                        textColor="primary"
+                        fullWidth
+                    >
+                        <Tab label="Departments" />
+                        <Tab label="Empolyees" />
+                        <Tab label="Teams" disabled />
+                    </Tabs>
+                </AppBar>
                 <SwipeableViews index={this.state.value} onChangeIndex={index => this.handleChangeIndex(index)}>
                     <TabContainer>
                         <DepartmentTable />
@@ -85,18 +88,16 @@ class RelationPage extends React.Component {
     }
 }
 RelationPage.propTypes = {
-    location: PropTypes.object.isRequired,
-    departments: PropTypes.array.isRequired,
+    isDocked: PropTypes.bool.isRequired,
+    adjustWidth: PropTypes.string.isRequired,
 };
 
 
 const mapStateToProps = (state, ownProps) => {
-    const departmentState = state.departmentState;
+    const interfaceState = state.interfaceState;
     return {
-        departments: departmentState.departments,
-        isFetching: departmentState.isFetching,
-        lastUpdated: departmentState.lastUpdated,
-        updatedDepartment: departmentState.updatedIssue,
+        adjustWidth: interfaceState.adjustWidth,
+        isDocked: interfaceState.isDocked,
     }
 };
 

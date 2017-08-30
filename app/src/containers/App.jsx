@@ -12,9 +12,10 @@ import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 
+const dockedWidth = 'calc(100% - 250px)';
 const styleSheet = theme => ({
     right: {
-        width: 'calc(100% - 250px)',
+        width: dockedWidth,
         float: 'right'
     },
     content: {
@@ -35,7 +36,7 @@ class App extends React.Component {
                 <SideMenu />
                 <Header className={classes.right} />
                 <div className={classNames(classes.content, classes.right)}>
-                    <Routes />
+                    <Routes/>
                 </div>
 
                 <Notification />

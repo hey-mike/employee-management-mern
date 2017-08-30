@@ -46,7 +46,8 @@ const EmployeeRow = (props) => {
       key={employee._id}
       selected={isSelected}
     >
-      <TableCell checkbox>
+      <TableCell checkbox
+      disablePadding>
         {/* <Checkbox checked={isSelected} /> */}
         <Avatar alt={`avatar-${employee._id}`} src="/images/default-avatar.png"/>
       </TableCell>
@@ -75,12 +76,12 @@ const styleSheet = theme => ({
   }
 });
 const columnData = [
-  { id: 'photo', numeric: false, disablePadding: true, label: 'Photo' },
-  { id: 'id', numeric: false, disablePadding: true, label: 'Id' },
-  { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
-  { id: 'title', numeric: false, disablePadding: true, label: 'Title' },
-  { id: 'created', numeric: false, disablePadding: true, label: 'Created' },
-  { id: 'status', numeric: false, disablePadding: true, label: 'Status' },
+  { id: 'photo', numeric: false, disablePadding: false, label: 'Photo' },
+  { id: 'id', numeric: false, disablePadding: false, label: 'Id' },
+  { id: 'name', numeric: false, disablePadding: false, label: 'Name' },
+  { id: 'title', numeric: false, disablePadding: false, label: 'Title' },
+  { id: 'created', numeric: false, disablePadding: false, label: 'Created' },
+  { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
 ];
 class EmployeeTable extends Component {
   constructor(props) {
