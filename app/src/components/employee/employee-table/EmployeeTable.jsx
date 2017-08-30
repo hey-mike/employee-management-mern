@@ -19,7 +19,7 @@ import Table, {
   TableRow,
   TableSortLabel,
 } from 'material-ui/Table';
-
+import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import { LinearProgress } from 'material-ui/Progress';
@@ -47,7 +47,8 @@ const EmployeeRow = (props) => {
       selected={isSelected}
     >
       <TableCell checkbox>
-        <Checkbox checked={isSelected} />
+        {/* <Checkbox checked={isSelected} /> */}
+        <Avatar alt={`avatar-${employee._id}`} src="/images/default-avatar.png"/>
       </TableCell>
       <TableCell><Link to={`/employees/${employee._id}`}>
         {employee._id.substr(-4)}</Link></TableCell>
@@ -74,11 +75,12 @@ const styleSheet = theme => ({
   }
 });
 const columnData = [
-  { id: 'id', numeric: false, disablePadding: false, label: 'Id' },
-  { id: 'name', numeric: false, disablePadding: false, label: 'Name' },
-  { id: 'title', numeric: false, disablePadding: false, label: 'Title' },
-  { id: 'created', numeric: false, disablePadding: false, label: 'Created' },
-  { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
+  { id: 'photo', numeric: false, disablePadding: true, label: 'Photo' },
+  { id: 'id', numeric: false, disablePadding: true, label: 'Id' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
+  { id: 'title', numeric: false, disablePadding: true, label: 'Title' },
+  { id: 'created', numeric: false, disablePadding: true, label: 'Created' },
+  { id: 'status', numeric: false, disablePadding: true, label: 'Status' },
 ];
 class EmployeeTable extends Component {
   constructor(props) {
