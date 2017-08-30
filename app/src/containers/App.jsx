@@ -19,7 +19,8 @@ const styleSheet = theme => ({
         float: 'right'
     },
     content: {
-        paddingTop: 80
+        transition: "width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms",
+        paddingTop: 120
     }
 });
 

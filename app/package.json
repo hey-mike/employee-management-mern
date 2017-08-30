@@ -43,6 +43,7 @@
     "react-swipeable-views": "^0.12.6",
     "redux": "^3.7.2",
     "redux-form": "^7.0.3",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "source-map-support": "^0.4.15",
     "webpack-dev-middleware": "^1.12.0"

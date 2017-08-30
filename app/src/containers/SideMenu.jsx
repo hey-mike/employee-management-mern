@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
@@ -49,6 +50,10 @@ const styleSheet = theme => ({
     width: 50,
     height: 50,
   },
+  sideMenu : {
+    transform: "translate3d(0px, 0px, 0px)",
+    transition: "-webkit-transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms"
+  }
 });
 
 class SideMenu extends Component {
@@ -151,6 +156,15 @@ class SideMenu extends Component {
 SideMenu.propTypes = {
   classes: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  isDocked: PropTypes.bool.isRequired,
+  adjustWidth: PropTypes.string.isRequired,
+}
+const mapStateToProps = (state, ownProps) => {
+  const interfaceState = state.interfaceState;
+  return {
+    adjustWidth: interfaceState.adjustWidth,
+    isDocked: interfaceState.isDocked,
+  }
 };
 
-export default withRouter(withStyles(styleSheet)(SideMenu));
+export default withRouter(connect(mapStateToProps)(withStyles(styleSheet)(SideMenu)));

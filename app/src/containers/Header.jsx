@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
 import { withRouter, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -22,7 +23,9 @@ import AdminMenu from '../components/AdminMenu.jsx';
 
 const styleSheet = theme => ({
   root: {
-    width: 'calc(100% - 250px)'
+    // transform: "translate3d(0px, 0px, 0px)",
+    transition: "width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms"
+
   },
   drawer: {
     flex: 0
@@ -41,8 +44,16 @@ const styleSheet = theme => ({
 
 function Header(props) {
   const { classes, login } = props;
+
+  const newRoot = {
+    width: props.adjustWidth
+  };
+  // console.log("newRoot",newRoot);
+  // console.log("classes.root",classes.root);
+
   return (
-    <AppBar position="fixed" classes={{ root: classes.root }}>
+    // <AppBar position="fixed" classes={{ root: classes.root }}>
+    <AppBar position="fixed" style={newRoot}  classes={{ root: classes.root }}>
       <Toolbar>
         <IconButton color="contrast" aria-label="Menu">
           <MenuIcon />
@@ -66,7 +77,16 @@ function Header(props) {
 
 Header.prototypes = {
   showSuccess: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  isDocked: PropTypes.bool.isRequired,
+  adjustWidth: PropTypes.string.isRequired,
 }
+const mapStateToProps = (state, ownProps) => {
+  const interfaceState = state.interfaceState;
+  return {
+    adjustWidth: interfaceState.adjustWidth,
+    isDocked: interfaceState.isDocked,
+  }
+};
 
-export default withRouter(withStyles(styleSheet)(Header));
+export default withRouter(connect(mapStateToProps)(withStyles(styleSheet)(Header)));

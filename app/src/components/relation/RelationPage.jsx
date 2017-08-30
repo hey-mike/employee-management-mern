@@ -60,9 +60,13 @@ class RelationPage extends React.Component {
         this.setState({ value: index });
     };
     render() {
+        const style = {
+            width:this.props.adjustWidth,
+            top:64
+        }
         return (
             <div>
-                <AppBar position="fixed" color="default">
+                <AppBar position="fixed" color="default" style={style}>
                     <Tabs
                         value={this.state.value}
                         onChange={(event, value) => this.handleChange(event, value)}

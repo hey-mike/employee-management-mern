@@ -1,11 +1,11 @@
-class departmentApi {
+class noticeApi {
   
     static requestHeaders() {
       // return {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`}
       return {};
     }
   
-    static getAllDepartments(search) {
+    static getAllNotices(search) {
       const headers = this.requestHeaders();
       const request = new Request(`/api/department?${search}`, {
         method: 'GET',
@@ -14,7 +14,7 @@ class departmentApi {
   
       return fetch(request);
     }
-    static createDepartment(department) {
+    static createNotice(department) {
       const headers = Object.assign({
         'Content-Type': 'application/json'
       }, this.requestHeaders());
@@ -27,7 +27,7 @@ class departmentApi {
       return fetch(request);
     };
   
-    static updateDepartment(department) {
+    static updateNotice(department) {
       const headers = Object.assign({
         'Content-Type': 'application/json'
       }, this.requestHeaders());
@@ -43,5 +43,5 @@ class departmentApi {
     };
   }
   
-  export default departmentApi;
+  export default employeeApi;
   
