@@ -1,4 +1,4 @@
-# EmployeeManagement
+# Employee Management System
 
 ## Front-end
 
