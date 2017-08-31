@@ -32,14 +32,12 @@ class App extends React.Component {
     }
     render() {
         const classes = this.props.classes;
-        const newWidth = {
-            width:this.props.adjustWidth,
-        }
+
         return (
             <div>
                 <SideMenu />
                 <Header className={classes.right} />
-                <div className={classNames(classes.content, classes.right)} style={newWidth}>
+                <div className={classNames(classes.content, classes.right)}>
                     <Routes/>
                 </div>
 
@@ -48,17 +46,6 @@ class App extends React.Component {
         );
     }
 }
-App.propTypes = {
-    isDocked: PropTypes.bool.isRequired,
-    adjustWidth: PropTypes.string.isRequired,
-};
 
 
-const mapStateToProps = (state, ownProps) => {
-    const interfaceState = state.interfaceState;
-    return {
-        adjustWidth: interfaceState.adjustWidth,
-        isDocked: interfaceState.isDocked,
-    }
-};
-export default connect(mapStateToProps)(withStyles(styleSheet)(App));
+export default withStyles(styleSheet)(App);
